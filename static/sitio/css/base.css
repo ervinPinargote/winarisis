@@ -1,0 +1,251 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: -webkit-linear-gradient(right, rgb(5, 84, 140), rgb(247, 107, 28));
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  /*background: #4CAF50;*/
+  background:rgb(247, 107, 28);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+ /* background: #43A047;*/
+  background:rgb(5, 84, 140);
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.labelform{
+    margin-left:5%;
+}
+.idtext{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  margin-left:5%;
+  width: 70%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.lista ul
+{
+   padding-right: 0px;
+   padding-left: 0px;
+   padding-bottom: 0px;
+   padding-top: 0px;
+   margin: 0px;
+}
+.lista li
+{
+   list-style-type: none;
+   display: inline;
+   padding-right: 5px;
+}
+
+.encabezado {
+  position: relative;
+  margin-left:5%;
+  width: 90%;
+  background: rgba(0, 125, 204, .95);
+
+}
+
+.azul {
+  width: 80%;
+  height: 65px;
+  display: block;
+  position: absolute;
+}
+
+.azul::after {
+  content: "";
+  position: absolute;
+  height: 65px;
+  background: rgba(0, 125, 204, .95);
+  transform: skew(40deg);
+}
+
+.dorado {
+  background: rgb(212, 176, 18);
+  width: 35%;
+  right: 0px;
+  height: 65px;
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+
+.dorado::before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  width: 65px;
+  height: 65px;
+  background: rgb(212, 176, 18);
+  transform: skew(40deg);
+}
+
+.columna>img{
+  width: 100%;
+  height: calc(100% - 60px);/*<-- Yo puse 60px porque más o menos es lo que mide la altura del título, pero tú coloca un número de pixeles que se ajuste*/
+  object-fit: contain;
+}
+
+.onjd{
+    display: grid;
+    grid-template-columns: repeat(5,calc(20% - 13.5px));
+    grid-column-gap: 1.5%;
+}
+
+#header {
+				font-family:Arial, Helvetica, sans-serif;
+			}
+
+			ul, ol {
+				list-style:none;
+			}
+
+			.nav > li {
+				float:left;
+			}
+
+			.nav li a {
+				color:#b32424;
+				text-decoration:none;
+				padding:10px 12px;
+				display:block;
+			}
+
+			.nav li a:hover {
+				background-color:#efa03b;
+			}
+
+			.nav li ul {
+				display:none;
+				position:absolute;
+				min-width:auto;
+			}
+
+			.nav li:hover > ul {
+				display:block;
+			}
+
+			.nav li ul li {
+				position:relative;
+			}
+
+			.nav li ul li ul {
+				right:-140px;
+				top:0px;
+			}
+
+.card{
+  width: 100%;
+  height: 420px;
+
+
+}
+
+.header1{
+  border-radius: 10px 10px 0px 0px;
+  padding: 5px;
+  background-color: #2A3942;
+}
+
+h3{
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 1rem;
+}
+
+.iconM{
+  font-size: 18px;
+  margin-left: 170px;
+  color: #2f89fc;
+}
+
+.icon{
+  margin-right: 8px;
+}
+
+.body1 li{
+  transition: 1s all;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  padding: 15px;
+  margin-top: 0px;
+
+  list-style: none;
+  display: block;
+  border-top-right-radius: 10px 10px;
+  border-bottom-right-radius: 10px 10px;
+}
+
+li:hover{
+  transition: 1s all;
+  color: #2f89fc;
+  background-color: rgba(42, 56, 65, 0.82);
+  border-top-right-radius: 10px 10px;
+  border-bottom-right-radius: 10px 10px;
+  cursor: pointer;
+}
+
+.body1 > li{
+  float: left;
+}
+
+.body1 li ul{
+  background: #1E2B32;
+  margin-left: 280px;
+  margin-top: -38px;
+  display: none;
+  position: absolute;
+  border-top-right-radius: 15px 15px;
+  border-bottom-right-radius: 15px 15px;
+}
+
+.body1 li:hover > ul{
+  display: block;
+  cursor: pointer;
+}

@@ -11,3 +11,9 @@ class ConfiguracionIndex(models.Model):
     logo = models.ImageField()
     logo_url = models.CharField(max_length=50, null=False, verbose_name="Url")
 
+
+class noticias_index(models.Model):
+    titulo = models.CharField(max_length=50, null=False, verbose_name="Titulo noticia")
+    imagen = models.ImageField(upload_to="noticias")
+    link = models.CharField(max_length=50, null=True, verbose_name="link")
+    descripcion = models.TextField()

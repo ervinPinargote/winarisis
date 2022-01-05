@@ -42,11 +42,11 @@ html {
 
 body {
 	color: #666666;
-	font-size: 14px;
 	font-family: 'poppins', sans-serif;
 	line-height: 1.80857;
 	font-weight: normal;
 	overflow-x: hidden;
+	background-color: #DBECDC;
 }
 
 a {
@@ -450,7 +450,7 @@ a.readmore_bt {
 ---------------------------------------------------------------------*/
 
 .logo_section {
-	text-align: center;
+
 }
 
 .logo {
@@ -464,11 +464,11 @@ nav.main-menu {
 
 .menu-area-main li:hover a,
 .menu-area-main li:focus a {
-	color: #ffc221;
+	color: #b32424;
 }
 
 .menu-area-main li.active a {
-	color: #ffc221;
+	color: #efa03b;
 }
 
 .right_cart_section {
@@ -717,7 +717,7 @@ nav.main-menu {
 
 .modal-title {
 	padding: 0px;
-	color: #ffffff;
+	color: #b32424;
 	font-size: 18px;
 	text-transform: uppercase;
 }
@@ -1644,7 +1644,7 @@ input[type="radio"] .styled:checked+label::after {
 
 
 .buy {
-background: #ffc221;
+background: #efa03b;
 padding: 7px 41px !important;
 margin-top: 18px;
 border-radius: 5px;
@@ -1653,10 +1653,10 @@ float: right;
 }
 
 .buy:hover {
-	color: #fff;
+	color: #b32424;
 }
 
-.head_top {background: #ffc221;
+.head_top {background: #efa03b;
 margin-bottom: 35px;
 }
 ul.sociel_link {
@@ -1689,6 +1689,8 @@ font-size: 18px;
 .header {
 	background: #fff;
 	padding-bottom: 35px;
+	margin-left: 5%;
+	width:90%;
 }
 
 .logo a {
@@ -1748,23 +1750,18 @@ margin-top: 20px;
 
 
 .title {
-	text-align:center;
 	padding-bottom: 60px;
 
 }
 
 .title h2 {
-	font-size: 50px;
-	line-height: 55px;
+	font-size: 30px;
 	color:#ffc221;
 	font-weight: 500;
 	text-transform: uppercase;
-    margin-bottom: 27px;
-    position: relative;
-    padding-bottom: 8px;
 }
 .title h2:after {
-	position: relative;
+position: relative;
 content: '';
 top: 100%;
 width: 110px;
@@ -1879,6 +1876,14 @@ margin-top: 40px;
 .product {
 	background: #fff;
 	padding-top: 60px;
+	width:90%;
+	margin-left:5%;
+
+}
+.obj{
+margin-left:1%;
+width:98%;
+
 
 }
 
@@ -2058,7 +2063,9 @@ margin-top: 20px;
 /** footer section **/
 
 .footer {
-	background: #1b1b1b;
+	background: #764626;
+	width:75%;
+	margin-left:12.5%;
     padding-top: 70px;
 }
 ul.sociel {
@@ -2126,7 +2133,7 @@ ul.lik li a:hover {
 }
 
 .copyright {
-	background-color: #ffc221;
+	background-color: #efa03b;
 	padding: 20px 0px;
 	margin-top: 70px;
 }
@@ -2340,7 +2347,7 @@ text-align: center;
 #main_slider .carousel-control-next {
 	width: 52px;
 	height: 52px;
-	background: #fffdfd;
+	background: #efa03b;
 	opacity: 1;
 	font-size: 30px;
 	color: #000;
@@ -2350,7 +2357,7 @@ text-align: center;
 #main_slider .carousel-control-next:hover,
 #main_slider .carousel-control-prev:focus,
 #main_slider .carousel-control-next:focus {
-	background: #ffc221;
+	background: #b32424;
 	color: #fff;
 }
 
@@ -2367,3 +2374,5 @@ text-align: center;
 	top: inherit;
 	bottom: 10px;
 }
+
+

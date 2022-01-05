@@ -1,0 +1,24 @@
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title" id="exampleModalLabel"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Autoridades: {{org.nombre}}</b></h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <section class="js-catalog-products js-sidebar-fixedto clearfix  is-advert-shown" style="margin-left:2%; width:95%;     display: grid;
+    grid-template-columns: repeat(2,calc(50% - 13.5px));
+    grid-column-gap: 20px;">
+            {% for aut in autoridades %}
+            <span>
+              <h1>{{aut.id_tipo_autoridad.descripcion}}</h1>
+             <span><label>Identificacion:</label> {{aut.ci}}</span>
+                <p>Nombre:     <strong>{{aut.nombre_apellido}}</strong></p>
+              <p>Telefono:   <strong>{{aut.telefono}}</strong></p>
+              <p>Correo:     <strong>{{aut.correo}}</strong></p>
+            </span>
+            {% endfor %}
+        </section>
+    </div>
+</div>

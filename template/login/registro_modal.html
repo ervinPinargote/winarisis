@@ -1,0 +1,116 @@
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% block titlemodal %} <h1 style="margin-left:30%;" class="modal-title" id="exampleModalLabel"><b>
+            Registro de Usuario</b></h1>{% endblock %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% block modalcuerpo%}
+
+        <form method="post" action="{% url 'usuario:registrar'  %}" style="width:80%; margin-left:10%;">
+             <span style="color:#1f1f1f;"> (*) Todos los campos de este formulario son obligatorios. </span>
+            <br>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="labelform">Nombre</label>
+                        <input class="form-control" type="text" name="first_name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="labelform">Apellidos</label>
+                        <input class="form-control" type="text" name="last_name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="labelform">Nombre de usuario</label>
+                        <input class="form-control" type="text" name="username" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="labelform" >Correo</label>
+                        <input class="form-control" type="text" name="email" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="labelform">Contraseña</label>
+                        <input class="form-control" type="password" id="password1" name="password1" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="labelform">Confirmar contraseña</label>
+                        <input class="form-control" type="password" id="password2" name="password2" required>
+                    </div>
+                </div>
+            </div>
+
+            <div id="error" class="alert alert-danger ocultar" role="alert">
+    Las Contraseñas no coinciden, vuelve a intentar !
+</div>
+<div id="ok" class="alert alert-success ocultar" role="alert">
+    Las Contraseñas coinciden ! (Procesando formulario ... )
+</div>
+
+
+
+            <div class="row">
+                <div class="col-md-11 col-md-offset-2">
+                    <div class="form-group" style="margin-left:30%;">
+                        <button class="btn btn-primary" id="registrar" type="submit">Registrar Usuario</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        {% endblock %}
+        <br>
+    </div>
+</div>
+
+<script>
+
+$('#password2').on('change', function() {
+        pass1 = document.getElementById('password1');
+        pass2 = document.getElementById('password2');
+
+        // Verificamos si las constraseñas no coinciden
+    if (pass1.value != pass2.value) {
+
+        // Si las constraseñas no coinciden mostramos un mensaje
+        document.getElementById("error").classList.add("mostrar");
+        document.getElementById("registrar").disabled = true;
+        return false;
+    } else {
+
+        // Si las contraseñas coinciden ocultamos el mensaje de error
+        document.getElementById("error").classList.remove("mostrar");
+
+        // Mostramos un mensaje mencionando que las Contraseñas coinciden
+        document.getElementById("ok").classList.remove("ocultar");
+
+        // Desabilitamos el botón de login
+        document.getElementById("registrar").disabled = false;
+
+        return true;
+    }
+
+});
+    </script>

@@ -16,13 +16,29 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
+from administracion.views import index_principalF
+
 urlpatterns = [
+    path('login', LoginView.as_view(template_name='login/login.html'), name="login"),
+    path('', index_principalF, name='inicio'), #permite lanzar el index principal
     path('admin/', admin.site.urls),
-    path('index/', include(('administracion.urls', 'inicio'), namespace='inicio'), name='inicio'),
+
+   # path('index/', include(('administracion.urls', 'inicio'), namespace='inicio'), name='inicio'),
+
+
+    path('Organizacion/', include(('organizacionn.urls', 'organizacion'), namespace='organizacion'), name='organizacion'),
+    path('usuario/', include(('usuario.urls', 'usuario'), namespace='usuario'), name='usuario'),
+    path('administrador/', include(('productos.urls', 'productos'), namespace='adminOrganiacion'), name='adminOrganiacion'),
 ]
 
-urlpatterns += staticfiles_urlpatterns()
+#urlpatterns += staticfiles_urlpatterns()
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL,
+#'django.views.static.serve', document_root=settings.MEDIA_ROOT)
+#urlpatterns += staticfiles_urlpatterns()

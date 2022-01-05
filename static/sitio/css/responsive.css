@@ -251,7 +251,7 @@ padding: 1px 0px 1px 0px;
 
 @media (min-width: 576px) and (max-width: 767px) {
     .header {
-     
+
         padding-top: 35px;
     }
     .mean-container .mean-bar {
@@ -282,12 +282,12 @@ padding: 1px 0px 1px 0px;
         width: 100%;
         height: 400px;
     }
-   
+
      .head_top {
         display: none;
     }
-    .buy {display: none; } 
-    
+    .buy {display: none; }
+
     .choose_bg .white_bg .for_box {margin-bottom: 30px;}
     .read-more {margin-top: 10px;}
     .address {
@@ -336,7 +336,7 @@ padding: 1px 0px 1px 0px;
         width: 100%;
         height: 250px;
     }
-   
+
     .mean-container .mean-bar {
         margin-top: 0;
     }
@@ -346,7 +346,7 @@ padding: 1px 0px 1px 0px;
     .head_top {
         display: none;
     }
-    .buy {display: none;  } 
+    .buy {display: none;  }
     .main_bt {
         padding: 5px 24px 5px 24px;
         margin-right: 10px;
@@ -359,7 +359,7 @@ padding: 1px 0px 1px 0px;
     .product .title span {font-size: 21px;}
    .Clients_bg_white .title h3 {font-size: 31px; line-height: 37px;}
    .yellow_bg .yellow-box h3 {font-size: 20px;}
-   .yellow_bg .yellow-box i {display: inline-block;} 
+   .yellow_bg .yellow-box i {display: inline-block;}
     .read-more a {
         width: 192px;
         padding: 12px 0px;

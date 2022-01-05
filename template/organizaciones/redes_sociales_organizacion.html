@@ -1,0 +1,58 @@
+{% load static %}
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title" id="exampleModalLabel"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contactanos por los Siguientes Medios</b></h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <section class="onjd js-catalog-products js-sidebar-fixedto clearfix  is-advert-shown" style="margin-left:2%; width:95%;">
+            {% for red in redes %}
+            <div class="product-thumb item js-catalog-item" data-id="{{ forloop.counter }}"
+                 style="margin-right: 20px;">
+                <div class="product-thumb__inner"><a></a>
+                    <div class="product-thumb__picture ">
+                        <a href="{{red.link}}">
+                            {% ifequal red.mask 'FACEBOOK' %}
+                            <img class="product-thumb__image demilazyload js-catalog-image"
+                                                              src="{% static 'sitio/images/face.svg' %}"
+                                                              data-src="{% static 'sitio/images/face.svg' %}"
+                                                              alt="#"
+                                                              width="327" height="217" data-loaded="true">
+                            {% endifequal %}
+                            {% ifequal red.mask 'WASSAPT' %}
+                            <img class="product-thumb__image demilazyload js-catalog-image"
+                                                              src="{% static 'sitio/images/wasapt.png' %}"
+                                                              data-src="{% static 'sitio/images/wasapt.png' %}"
+                                                              alt="#"
+                                                              width="327" height="217" data-loaded="true">
+                            {% endifequal %}
+                            {% ifequal red.mask 'INSTA' %}
+                            <img class="product-thumb__image demilazyload js-catalog-image"
+                                                              src="{% static 'sitio/images/insta.jpg' %}"
+                                                              data-src="{% static 'sitio/images/insta.jpg' %}"
+                                                              alt="#"
+                                                              width="327" height="217" data-loaded="true">
+                            {% endifequal %}
+                            {% ifequal red.mask 'OTHER' %}
+                            <img class="product-thumb__image demilazyload js-catalog-image"
+                                                              src="{% static 'sitio/images/correo.png' %}"
+                                                              data-src="{% static 'sitio/images/correo.png' %}"
+                                                              alt="#"
+                                                              width="327" height="217" data-loaded="true">
+                            {% endifequal %}
+                        </a>
+                    </div>
+                    <div class="product-thumb__info js-product-info" style="padding: 10px;">
+                        <h4 class="product-thumb__title" title="{{organizaciones.nombre_organizacion}}">
+                            {{red.link}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+</div>

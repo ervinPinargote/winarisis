@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+{% load static %}
+{% load etiqueta_url %}
+<html lang="es">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Winari</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icons -->
+    <link rel="icon" href="{% static 'sitio_dark/images/logos/it_logo.png'%}" type="image/gif"/>
+    <!-- bootstrap css -->
+
+    <link rel="stylesheet" href="{% static 'sitio_dark/css/bootstrap.min.css' %}"/>
+    <!-- Site css -->
+    <link rel="stylesheet" href="{% static 'sitio_dark/css/style.css'%}"/>
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'sitio_dark/css/responsive.css'%}"/>
+    <!-- colors css -->
+    <link rel="stylesheet" href="{% static 'sitio_dark/css/colors1_dark.css'%}"/>
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'sitio_dark/css/custom.css'%}"/>
+    <!-- wow Animation css -->
+    <link rel="stylesheet" href="{% static 'sitio_dark/css/animate.css'%}"/>
+    <link rel="stylesheet" href="{% static 'sitio_dark/css/hizoom.css'%}"/>
+    <!-- revolution slider css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'sitio_dark/revolution/css/settings.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'sitio_dark/revolution/css/layers.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'sitio_dark/revolution/css/navigation.css'%}"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="default_theme" class="it_service">
+<!-- loader -->
+<div class="bg_load"><img class="loader_animation" src="{% static 'sitio_dark/images/logos/it_logo_white.png'%}"
+                          alt="#"/></div>
+<!-- end loader -->
+<!-- header -->
+<header id="default_header" class="header_style_1">
+    <!-- header top -->
+    <div class="header_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="full">
+                        <div class="topbar-left">
+                            <ul class="list-inline">
+                                {% if user.is_authenticated %}
+                                <li><span class="topbar-label"><i class="fa  fa-user"></i></span> <span
+                                        class="topbar-hightlight">{{ user.first_name }} {{ user.last_name }}
+                </span></li>
+                                <li><span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span
+                                        class="topbar-hightlight"><a
+                                        href="mailto:info@yourdomain.com">{{ user.email }}</a></span></li>
+                                {% else %}
+                                <span>No has iniciado session.</span>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 right_section_header_top">
+                    <div class="float-left">
+                        <div class="social_icon">
+                            <ul class="list-inline">
+                                <li><a class="fa fa-facebook" href="https://www.facebook.com/" title="Facebook"
+                                       target="_blank"></a></li>
+                                <li><a class="fa fa-google-plus" href="https://plus.google.com/" title="Google+"
+                                       target="_blank"></a></li>
+                                <li><a class="fa fa-twitter" href="https://twitter.com" title="Twitter"
+                                       target="_blank"></a></li>
+                                <li><a class="fa fa-linkedin" href="https://www.linkedin.com" title="LinkedIn"
+                                       target="_blank"></a></li>
+                                <li><a class="fa fa-instagram" href="https://www.instagram.com" title="Instagram"
+                                       target="_blank"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        {% if user.is_authenticated %}
+                        <div class="make_appo"><a class="btn white_btn" href="{% url 'usuario:salir'  %}">Cerrar
+                            Sesion</a></div>
+                        {% else %}
+                        <div class="make_appo"><a class="btn white_btn" onclick="abrirmodal('{% url 'login'  %}'); ">Iniciar
+                            Sesion</a></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header top -->
+    <!-- header bottom -->
+    <div class="header_bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <!-- logo start -->
+                    <div class="logo"><a href="it_home.html"><img src="{{inst1.logo.url}}" alt="logo"/></a></div>
+                    <!-- logo end -->
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <!-- menu start -->
+                    <div class="menu_side">
+                        <div id="navbar_menu">
+                            <ul class="first-ul">
+                                <li><a class="active" href="it_home.html">Inicio</a>
+                                </li>
+                                <li><a href="it_about.html">Nosotros</a></li>
+                                <li><a href="it_service.html">Organizaciones</a>
+                                    <ul>
+                                        <li><a href="it_service_list.html">Ver Organizaciones</a></li>
+                                        {% if user.is_authenticated %}
+                                        {% if request.user|has_group:"adminOrganizacion" %}
+                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Ir Administrar</a>
+                                        </li>
+                                        {% endif %}
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                                <li><a href="it_blog.html">Productos</a>
+                                    <ul>
+                                        <li><a href="it_blog.html">Ver Productos</a></li>
+                                        {% if user.is_authenticated %}
+                                        {% if request.user|has_group:"adminOrganizacion" %}
+                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Ir Administrar</a>
+                                        </li>
+                                        {% endif %}
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                                <li><a href="#">Contactos</a>
+                                    <ul>
+                                        <li><a href="it_career.html">Career</a></li>
+                                        <li><a href="it_price.html">Pricing</a></li>
+                                        <li><a href="it_faq.html">Faq</a></li>
+                                        <li><a href="it_privacy_policy.html">Privacy Policy</a></li>
+                                        <li><a href="it_error.html">Error 404</a></li>
+                                    </ul>
+                                </li>
+                                <!-- <li> <a href="it_shop.html">Shop</a>
+                                   <ul>
+                                     <li><a href="it_shop.html">Shop List</a></li>
+                                     <li><a href="it_shop_detail.html">Shop Detail</a></li>
+                                     <li><a href="it_cart.html">Shopping Cart</a></li>
+                                     <li><a href="it_checkout.html">Checkout</a></li>
+                                   </ul>
+                                 </li> -->
+                                <!-- <li> <a href="it_contact.html">Contact</a>
+                                   <ul>
+                                     <li><a href="it_contact.html">Contact Page 1</a></li>
+                                     <li><a href="it_contact_2.html">Contact Page 2</a></li>
+                                   </ul>
+                                 </li> -->
+                            </ul>
+                        </div>
+                        <div class="search_icon">
+                            <ul>
+                                <li><a href="#" data-toggle="modal" data-target="#search_bar"><i class="fa fa-search"
+                                                                                                 aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header bottom end -->
+</header>
+<!-- end header -->
+<!-- section -->
+
+{% block contenido %}
+
+
+{% endblock %}
+
+
+<!-- PATROCINADORES -->
+<div class="section padding_layout_1" style="padding: 50px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <ul class="brand_list">
+                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon1.png' %}" alt="#"/></li>
+                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon2.png' %}" alt="#"/></li>
+                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon3.png' %}" alt="#"/></li>
+                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon4.png' %}" alt="#"/></li>
+                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon5.png' %}" alt="#"/></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<!--<div class="modal fade" id="modal" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 offset-lg-2 offset-md-2 offset-sm-2 col-xs-10 col-xs-offset-1">
+            <div class="navbar-search">
+              <form action="#" method="get" id="search-global-form" class="search-global">
+                <input type="text" placeholder="Type to search" autocomplete="off" name="s" id="search" value="" class="search-global__input">
+                <button class="search-global__btn"><i class="fa fa-search"></i></button>
+                <div class="search-global__note">Begin typing your search above and press return to search.</div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="modal fade" id="modal" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% block titlemodal %}{% endblock %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% block modalcuerpo%}
+
+            {% endblock %}
+
+            <div id="error" class="alert alert-danger ocultar" role="alert">
+                Las Contraseñas no coinciden, vuelve a intentar !
+            </div>
+            <div id="ok" class="alert alert-success ocultar" role="alert">
+                Las Contraseñas coinciden !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Model search bar -->
+<!-- footer -->
+<footer class="footer_style_2">
+    <div class="container-fuild">
+        <div class="row">
+            <div class="map_section">
+                <div id="map"></div>
+            </div>
+            <div class="footer_blog">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="main-heading left_text">
+                            <h2>Mision</h2>
+                        </div>
+                        <p>{{inst1.mision}}</p>
+                        <ul class="social_icons">
+                            <li class="social-icon fb"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="social-icon tw"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="social-icon gp"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="main-heading left_text">
+                            <h2>Ultimas Noticias</h2>
+                        </div>
+                        <ul class="footer-menu">
+                            {% for new in not2 %}
+
+                            <li><a href="#"><i class="fa fa-angle-right"></i> {{new.titulo}}</a></li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="main-heading left_text">
+                            <h2>Nuestros Mejores Productos</h2>
+                        </div>
+                        <ul class="footer-menu">
+                            {% for org in productos %}
+                            <li><a href="it_data_recovery.html"><i class="fa fa-angle-right"></i>
+                                {{org.nombre_presentacion}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="main-heading left_text">
+                            <h2>Contactos</h2>
+                        </div>
+                        <p>{{inst1.correo}}<br>
+                            <span style="font-size:18px;"><a href="tel:096 125 9707">096 125 9707</a></span></p>
+                        <div class="footer_mail-section">
+                            <form>
+                                <fieldset>
+                                    <div class="field">
+                                        <input placeholder="Email" type="text">
+                                        <button class="button_custom"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cprt">
+                <p>Copyright @ 2022 - Red de Empredimiento Winari</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->
+<!-- js section -->
+
+<script src="{% static 'sitio_dark/js/extras.js' %}"></script>
+<script src="{% static 'sitio_dark/js/jquery.min.js'%}"></script>
+<script src="{% static 'sitio_dark/js/bootstrap.min.js' %}"></script>
+<!-- menu js -->
+<script src="{% static 'sitio_dark/js/menumaker.js'%}"></script>
+<!-- wow animation -->
+<script src="{% static 'sitio_dark/js/wow.js'%}"></script>
+<!-- custom js -->
+<script src="{% static 'sitio_dark/js/custom.js'%}"></script>
+<!-- revolution js files -->
+<script src="{% static 'sitio_dark/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+<script src="{% static 'sitio_dark/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+
+
+<!-- map js -->
+<script>
+         // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+         // Australia.
+         function initMap() {
+           var map = new google.maps.Map(document.getElementById('map'), {
+             zoom: 11,
+             center: {lat: 40.645037, lng: -73.880224},
+         styles: [
+                  {
+                    elementType: 'geometry',
+                    stylers: [{color: '#fefefe'}]
+                  },
+                  {
+                    elementType: 'labels.icon',
+                    stylers: [{visibility: 'off'}]
+                  },
+                  {
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#616161'}]
+                  },
+                  {
+                    elementType: 'labels.text.stroke',
+                    stylers: [{color: '#f5f5f5'}]
+                  },
+                  {
+                    featureType: 'administrative.land_parcel',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#bdbdbd'}]
+                  },
+                  {
+                    featureType: 'poi',
+                    elementType: 'geometry',
+                    stylers: [{color: '#eeeeee'}]
+                  },
+                  {
+                    featureType: 'poi',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#757575'}]
+                  },
+                  {
+                    featureType: 'poi.park',
+                    elementType: 'geometry',
+                    stylers: [{color: '#e5e5e5'}]
+                  },
+                  {
+                    featureType: 'poi.park',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#9e9e9e'}]
+                  },
+                  {
+                    featureType: 'road',
+                    elementType: 'geometry',
+                    stylers: [{color: '#eee'}]
+                  },
+                  {
+                    featureType: 'road.arterial',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#3d3523'}]
+                  },
+                  {
+                    featureType: 'road.highway',
+                    elementType: 'geometry',
+                    stylers: [{color: '#eee'}]
+                  },
+                  {
+                    featureType: 'road.highway',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#616161'}]
+                  },
+                  {
+                    featureType: 'road.local',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#9e9e9e'}]
+                  },
+                  {
+                    featureType: 'transit.line',
+                    elementType: 'geometry',
+                    stylers: [{color: '#e5e5e5'}]
+                  },
+                  {
+                    featureType: 'transit.station',
+                    elementType: 'geometry',
+                    stylers: [{color: '#000'}]
+                  },
+                  {
+                    featureType: 'water',
+                    elementType: 'geometry',
+                    stylers: [{color: '#c8d7d4'}]
+                  },
+                  {
+                    featureType: 'water',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#b1a481'}]
+                  }
+                ]
+         });
+         
+           var image = '{% static 'sitio_dark/images/it_service/location_icon_map_cont.png'%} ';
+           var beachMarker = new google.maps.Marker({
+             position: {lat: 40.645037, lng: -73.880224},
+             map: map,
+             icon: image
+           });
+         }
+
+</script>
+<!-- google map js -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
+<!-- end google map js -->
+</body>
+</html>

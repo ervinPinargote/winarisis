@@ -1,0 +1,97 @@
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% block titlemodal %} <h1 class="modal-title" id="exampleModalLabel"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Agregar Presentacion</b></h1>{% endblock %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% block modalcuerpo%}
+
+        <form style="width:90%; margin-left:5%;"  enctype="multipart/form-data" action="{% url 'adminOrganiacion:agregar_presentacion_productos' id_producto %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Nombre Presentacion:</label>
+                        {{form.nombre_presentacion}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Estado: </label>
+                        {{form.estado}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Contenido Neto:</label>
+                        {{form.cont_neto}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Unidad de Medida: </label>
+                        {{form.id_unidad_medida}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Precio Normal: </label>
+                        {{form.precio}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Precio por Mayor:  </label>
+                        {{form.precio_mayor}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Categoria: </label>
+                        {{form.id_categoria}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Logo:  </label>
+                        {{form.logo}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Detalles:</label>
+                        {{form.detalles}}
+                    </div>
+                </div>
+            </div>
+
+           <select name="id_producto" class="form-control" required="" id="id_id_producto">
+  <option value="{{id_producto}}" selected="">---------</option>
+</select>
+
+
+
+            <button type="submit" CLASS=" btn btn-danger">Registrar Presentacion</button>
+        </form>
+
+
+        {% endblock %}
+        <br>
+    </div>
+</div>

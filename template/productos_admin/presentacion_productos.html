@@ -1,0 +1,110 @@
+{% extends "base_admin.html" %}
+{% load static %}
+
+{% block indice %}
+<span class="nombre" style="margin-top: 2%;"><i class="fa  fa-home"></i> {{Producto.id_organizacion.nombre_organizacion}}\ Presentacion \  {{Producto.nombre_producto}}</span>
+{% endblock %}
+
+{% block menulateral%}
+
+<li>
+    <a href="{% url 'adminOrganiacion:indexOrganizacion'  %}" class="">
+        <span class="icon"><i class="fa fa-home"></i></span>
+        <span class="item">Inicio</span>
+    </a>
+</li>
+
+<li>
+    <a href="#" class="">
+        <span class="icon"><i class="fa fa-reorder"></i></span>
+        <span class="item">Gestionar Organizacion</span>
+    </a>
+</li>
+
+<li>
+    <a href="{% url 'adminOrganiacion:productos_organizacion' Producto.id_organizacion.id %}" class="active">
+        <span class="icon"><i class="fa fa-reorder"></i></span>
+        <span class="item">Gestionar Productos / Presentaciones</span>
+    </a>
+</li>
+
+<li>
+    <a href="#" class="">
+        <span class="icon"><i class="fa fa-thumbs-o-up"></i></span>
+        <span class="item">Gestionar Redes Sociales</span>
+    </a>
+</li>
+
+<li>
+    <a href="{% url 'adminOrganiacion:todas_presentacion_productos' Producto.id_organizacion.id %}" class="">
+        <span class="icon"><i class="fa fa-exchange"></i></span>
+        <span class="item">Todos Los Productos</span>
+    </a>
+</li>
+
+<li>
+    <a href="#">
+        <span class="icon"><i class="fa fa-sign-out"></i></span>
+        <span class="item">Cerrar Seesion</span>
+    </a>
+</li>
+
+{% endblock %}
+
+{% block contenido %}
+<div style="width: 90%; margin-left:5%;">
+
+    <br>
+    <div class="main_heading text_align_center">
+        <h2>{{Producto.nombre_producto}}</h2>
+        <p class="large"> Agregar Presentacion <a
+                href="#"
+                onclick="abrirmodal('{% url 'adminOrganiacion:agregar_presentacion_productos' Producto.id %}'); "
+                class=""
+                style="color:white;"><i class="fa fa-check-square-o"></i> Dar Click!! </a></p>
+    </div>
+
+
+
+    <div class="table-responsive">
+        {% if Presentaciones %}
+        <table class="table table-hover table-bordered" id="datatable" style="width:100%;">
+            <thead class="table-active" >
+            <tr style="color:#F4A337;">
+                <td style="text-align:center;" width="5%">Ord.</td>
+                <td style="text-align:center;" width="30%">Nombre</td>
+                <td style="text-align:center;" width="20%">Categoria</td>
+                <td style="text-align:center;" width="10%">Contenido Neto</td>
+                <td style="text-align:center;" width="10%">PVP</td>
+                <td style="text-align:center;" width="10%">PVM</td>
+                <td style="text-align:center;" width="15%">Imagen</td>
+                <td style="text-align:center;" width="10%">Acciones</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for pr in Presentaciones %}
+            <tr>
+                <td style="text-align:center;">{{forloop.counter}}</td>
+                <td>{{pr.nombre_presentacion}}</td>
+                <td>{{pr.id_categoria.nombre_categoria}}</td>
+                <td>{{pr.cont_neto}} {{pr.id_unidad_medida.unidad_medida}} </td>
+                <td>{{pr.precio}}</td>
+                <td>{{pr.precio_mayor}}</td>
+                <td  style="text-align:center;"><img src="{{pr.logo.url}}" alt="{{pr.nombre_presentacion}}" width="50%"/></td>
+                <td style="text-align:center;">
+                    <a style="color:#A86C30;  font-size: 30px;" title="Modificar" href="#"><i class="fa fa-pencil-square"></i> </a>
+                    <a style="color:#B11C1F;  font-size: 30px;" title="Eliminar" href="#"><i class="fa fa-trash"></i> </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+            {% else %}
+            <h3>No hay registros para mostrar</h3>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% block titlemodal %} <h1 class="modal-title" id="exampleModalLabel"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Agregar Productos</b></h1>{% endblock %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% block modalcuerpo%}
+
+
+        <form style="width:90%; margin-left:5%;" action="{% url 'adminOrganiacion:agregar_productos_organizacion' id_organizacion %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Nombre Producto:</label>
+                        <input type="text" name="nombre_producto" class="form-control" maxlength="100" required=""
+                               id="id_nombre_producto">
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Fecha de Registro:</label>
+                        <input type="text" name="fecha_registro" class="form-control" required=""
+                               id="id_fecha_registro">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Beneficios:</label>
+
+                        <textarea name="desc_beneficio" class="form-control" id="id_desc_beneficio" rows="5" cols="50"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <select  hidden name="id_organizacion" class="form-control" required="" id="id_id_organizacion">
+                <option value="{{id_organizacion}}" selected="">---------</option>
+
+                <option value="4">ASO. DE PRODUCCION AGRICOLA SELVA VIDA</option>
+
+                <option value="8">ASOCIACION LA PAZ</option>
+
+                <option value="7">CORPORACION KICHWA (CHOCO SAMONA YUTURI CHOCHOSAMONA)</option>
+
+                <option value="5">LOS COQUENOS</option>
+
+                <option value="3">ASOPRIABET</option>
+
+                <option value="6">AWEIDI DEL YASUNI</option>
+
+                <option value="2">ASOCIACION DE CAMPESIONOS EL TRIUNFO</option>
+
+                <option value="1">ASOAMAZONAS</option>
+
+            </select>
+            <button type="submit" CLASS=" btn btn-danger">Registrar Producto</button>
+        </form>
+
+
+        {% endblock %}
+        <br>
+    </div>
+</div>

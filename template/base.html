@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>WINARI</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static 'sitio/css/bootstrap.min.css' %}">
+    <!-- style css -->
+    <link rel="stylesheet" href=" {% static 'sitio/css/style.css' %}">
+    <!--<link rel="stylesheet" href=" {% static 'sitio/css/stylenav.css' %}">-->
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{% static 'sitio/css/responsive.css' %}">
+    <!-- fevicon -->
+    <link rel="icon" href="{% static 'sitio/images/fevicon.png' %}" type="image/gif"/>
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{% static 'sitio/css/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'sitio/css/base.css' %}">
+
+
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="{% static 'sitio/css/products/bundle_catalog-no-photos.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'sitio/css/products/updates.min.css' %}">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+</head>
+<!-- body -->
+<body class="main-layout">
+<!-- loader  -->
+<div class="loader_bg">
+    <div class="loader"><img src="{% static 'sitio/images/loading.gif' %}" alt="#"/></div>
+</div>
+<!-- end loader -->
+<!-- header -->
+<header>
+
+    <div class="header" id="hie" style="backgrund:red;">
+        <nav style="float: left; width:20%;">
+            <div class="full">
+                <div class="center-desk">
+                    {% block logo%}
+                    <div class="logo"><a href="index.html"><img src="{{inst1.logo.url}}" width="100%"
+                                                                alt="logo"/></a></div>
+                    {% endblock %}
+                </div>
+            </div>
+        </nav>
+
+        <nav class="nav navbar navbar-expand-lg navbar-light bg-light" style="float: left; width:75%; margin-left:5%;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    {% block conten_menu %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Organizaciones</a>
+                        <ul>
+                            <li><a href="">Ir administrar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Productos</a>
+                        <ul>
+                            <li><a href="">ir administrar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contactos</a>
+                    </li>
+                    {% endblock %}
+                </ul>
+                <div class="my-2 my-lg-0">
+                    <div class="row">
+                        {% if user.is_authenticated %}
+                        <div class="col-md-6 pl-1">
+                            <h1 style="color:#b32424;font-size: 20px;	font-weight: 500;text-transform: uppercase; padding:0;
+margin: 0; margin-top: .5em;">Bienvenido: </h1>
+                            <span>{{ user.first_name }}</span>
+                        </div>
+                        <div class="col-md-6 pr-1">
+                            <a class="buy" onclick="abrirmodal('{% url 'login'  %}'); ">Salir</a>
+                        </div>
+                        {% else %}
+                        <div class="col-md-6 pl-1">
+                            <h1 style="color:#b32424;font-size: 20px;	font-weight: 500;text-transform: uppercase; padding:0;
+margin: 0; margin-top: .5em;">Bienvenido: </h1>
+                            <span>Visitante</span>
+                        </div>
+                        <div class="col-md-6 pr-1">
+                            <a class="buy" onclick="abrirmodal('{% url 'login'  %}'); ">Login</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+<!--<header id="SiteNavContainer" class="site-nav-container ">
+  <div class="marketing-nav-wrapper">
+
+<a class="in-page-link skip-to-main visuallyhidden focusable" data-ga-event="Main Nav" data-ga-action="Skip to content" data-trekkie-event="Main Nav" data-trekkie-action="Skip to content" data-trekkie-id="Main Nav Skip to content" href="#Main">Ir directamente al contenido</a>
+
+<nav class="marketing-nav--skin-dark marketing-nav marketing-nav--primary" id="ShopifyMainNav" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+
+      <div class="marketing-nav__logo ">
+        <a href="/" class="marketing-nav__logo__shopify" data-ga-event="Main Nav" data-ga-action="Logo" data-trekkie-event="Main Nav" data-trekkie-action="Logo" data-trekkie-id="Main Nav Logo">
+
+          <svg class="icon" aria-labelledby="icon-logos-shopify-white-1-title" role="img"><title id="icon-logos-shopify-white-1-title">Shopify</title> <use xlink:href="#logos-shopify-white"></use> </svg>
+</a>      </div>
+
+      <ul class="marketing-nav__items display--expanded-nav">
+        <li><div class="popover-wrapper js-popover-dropdown popover-wrapper--dropdown" data-position="bottom" data-align="left"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--primary" itemprop="name" data-ga-event="Main Nav" data-ga-action="Start Nav" data-trekkie-event="Main Nav" data-trekkie-action="Start Nav" data-trekkie-id="Main Nav Start Nav" aria-expanded="false" aria-controls="Popover1" aria-current="location">Comienza<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="popover popover--position-bottom popover--align-left" id="Popover1"><div class="popover__content"><ul class="popover__list"><li><a href="/comienza" class="marketing-nav__item marketing-nav__item--separated marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Start" data-trekkie-event="Main Nav" data-trekkie-action="Start" data-trekkie-id="Main Nav Start">Comienza tu negocio</a></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Branding Nav" data-trekkie-event="Main Nav" data-trekkie-action="Branding Nav" data-trekkie-id="Main Nav Branding Nav" aria-expanded="false" aria-controls="Popover2" aria-current="location">Crea tu marca<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover2"><div class="popover__content"><p class="popover__description">Crea una marca profesional y ayuda a tus clientes a que encuentren tu negocio</p><ul class="popover__list"><li><a href="/herramientas/generador-nombre-para-empresas" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Business name generator" data-trekkie-event="Main Nav" data-trekkie-action="Business name generator" data-trekkie-id="Main Nav Business name generator">Generador de nombres de empresas</a></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Online presence Nav" data-trekkie-event="Main Nav" data-trekkie-action="Online presence Nav" data-trekkie-id="Main Nav Online presence Nav" aria-expanded="false" aria-controls="Popover3" aria-current="location">Presencia online<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover3"><div class="popover__content"><p class="popover__description">Encuentra un dominio, explora bancos de imágenes, y amplía tu marca</p><ul class="popover__list"><li><a href="/dominios" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Web addresss" data-trekkie-event="Main Nav" data-trekkie-action="Web addresss" data-trekkie-id="Main Nav Web addresss">Crea tu dominio</a></li><li><a href="https://burst.shopify.com" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Stock photography" data-trekkie-event="Main Nav" data-trekkie-action="Stock photography" data-trekkie-id="Main Nav Stock photography">Banco de imágenes</a></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Store set up Nav" data-trekkie-event="Main Nav" data-trekkie-action="Store set up Nav" data-trekkie-id="Main Nav Store set up Nav" aria-expanded="false" aria-controls="Popover4" aria-current="location">Configuración de la tienda<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover4"><div class="popover__content"><p class="popover__description">Utiliza las funcionalidades poderosas de Shopify para comenzar a vender</p><ul class="popover__list"><li><a href="/oberlo" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Products to sell" data-trekkie-event="Main Nav" data-trekkie-action="Products to sell" data-trekkie-id="Main Nav Products to sell">Productos para vender</a></li><li><a href="https://themes.shopify.com/?locale=es" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Theme store" data-trekkie-event="Main Nav" data-trekkie-action="Theme store" data-trekkie-id="Main Nav Theme store">Temas para tiendas</a></li></ul></div></div></div></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-dropdown popover-wrapper--dropdown" data-position="bottom" data-align="left"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--primary" itemprop="name" data-ga-event="Main Nav" data-ga-action="Sell Nav" data-trekkie-event="Main Nav" data-trekkie-action="Sell Nav" data-trekkie-id="Main Nav Sell Nav" aria-expanded="false" aria-controls="Popover5" aria-current="location">Vende<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="popover popover--position-bottom popover--align-left" id="Popover5"><div class="popover__content"><ul class="popover__list"><li><a href="/vender" class="marketing-nav__item marketing-nav__item--separated marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Sell everywhere" data-trekkie-event="Main Nav" data-trekkie-action="Sell everywhere" data-trekkie-id="Main Nav Sell everywhere">Vende en todas partes</a></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Online store" data-trekkie-event="Main Nav" data-trekkie-action="Online store" data-trekkie-id="Main Nav Online store" aria-expanded="false" aria-controls="Popover6" aria-current="location">Tienda online<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover6"><div class="popover__content"><p class="popover__description">Vende online con un sitio web de ecommerce</p><ul class="popover__list"><li><a href="/online" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Online Overview" data-trekkie-event="Main Nav" data-trekkie-action="Online Overview" data-trekkie-id="Main Nav Online Overview">Descripción General</a></li><li><a href="/online/soluciones-de-comercio-electronico" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Online Features" data-trekkie-event="Main Nav" data-trekkie-action="Online Features" data-trekkie-id="Main Nav Online Features">Características</a></li><li><a href="/ejemplos" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Online Examples" data-trekkie-event="Main Nav" data-trekkie-action="Online Examples" data-trekkie-id="Main Nav Online Examples">Ejemplos</a></li><li><a href="/online/plantillas" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Online Themes" data-trekkie-event="Main Nav" data-trekkie-action="Online Themes" data-trekkie-id="Main Nav Online Themes">Temas</a></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Point of Sale Nav" data-trekkie-event="Main Nav" data-trekkie-action="Point of Sale Nav" data-trekkie-id="Main Nav Point of Sale Nav" aria-expanded="false" aria-controls="Popover7" aria-current="location">Point of Sale<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover7"><div class="popover__content"><p class="popover__description">Vende en tiendas minoristas, pop-ups, y muchos lugares más</p><ul class="popover__list"><li><a href="/pos" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Point of Sale Overview" data-trekkie-event="Main Nav" data-trekkie-action="Point of Sale Overview" data-trekkie-id="Main Nav Point of Sale Overview">Descripción General</a></li><li><a href="/pos/hardware" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Point of Sale Hardware" data-trekkie-event="Main Nav" data-trekkie-action="Point of Sale Hardware" data-trekkie-id="Main Nav Point of Sale Hardware">Hardware</a></li><li><a href="/pos/caracteristicas" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Point of Sale Features" data-trekkie-event="Main Nav" data-trekkie-action="Point of Sale Features" data-trekkie-id="Main Nav Point of Sale Features">Características</a></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Buy Button Nav" data-trekkie-event="Main Nav" data-trekkie-action="Buy Button Nav" data-trekkie-id="Main Nav Buy Button Nav" aria-expanded="false" aria-controls="Popover8" aria-current="location">Botón de compras<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover8"><div class="popover__content"><p class="popover__description">Transforma tu sitio web o tu blog en una tienda online</p><ul class="popover__list"><li><a href="/boton-de-compras" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Buy Button" data-trekkie-event="Main Nav" data-trekkie-action="Buy Button" data-trekkie-id="Main Nav Buy Button">Descripción General</a></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Sales channels Nav" data-trekkie-event="Main Nav" data-trekkie-action="Sales channels Nav" data-trekkie-id="Main Nav Sales channels Nav" aria-expanded="false" aria-controls="Popover9" aria-current="location">Canales de venta<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover9"><div class="popover__content"><p class="popover__description">Alcanza a millones de compradores y aumenta tus ventas</p><ul class="popover__list"><li><a href="/canales" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Sales channels" data-trekkie-event="Main Nav" data-trekkie-action="Sales channels" data-trekkie-id="Main Nav Sales channels">Descripción General</a></li><li><a href="/facebook-instagram" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Facebook and Instagram" data-trekkie-event="Main Nav" data-trekkie-action="Facebook and Instagram" data-trekkie-id="Main Nav Facebook and Instagram">Facebook e Instagram</a></li><li><a href="/google" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Google Buy" data-trekkie-event="Main Nav" data-trekkie-action="Google Buy" data-trekkie-id="Main Nav Google Buy">Google</a></li><li><a href="/ebay" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="eBay" data-trekkie-event="Main Nav" data-trekkie-action="eBay" data-trekkie-id="Main Nav eBay">eBay</a></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-flyout popover-wrapper--flyout" data-position="right" data-align="top"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="International commerce Nav" data-trekkie-event="Main Nav" data-trekkie-action="International commerce Nav" data-trekkie-id="Main Nav International commerce Nav" aria-expanded="false" aria-controls="Popover10" aria-current="location">Comercio internacional<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-right"></use> </svg></button><div class="popover popover--position-right popover--align-top" id="Popover10"><div class="popover__content"><p class="popover__description">Llega a los compradores en nuevos mercados con las herramientas para ventas internacionales</p><ul class="popover__list"><li><a href="/markets" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="International commerce Overview" data-trekkie-event="Main Nav" data-trekkie-action="International commerce Overview" data-trekkie-id="Main Nav International commerce Overview">Descripción General</a></li></ul></div></div></div></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-dropdown popover-wrapper--dropdown" data-position="bottom" data-align="left"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--primary" itemprop="name" data-ga-event="Main Nav" data-ga-action="Market Nav" data-trekkie-event="Main Nav" data-trekkie-action="Market Nav" data-trekkie-id="Main Nav Market Nav" aria-expanded="false" aria-controls="Popover11" aria-current="location">Promociona<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="popover popover--position-bottom popover--align-left" id="Popover11"><div class="popover__content"><ul class="popover__list"><li><a href="/promociona" class="marketing-nav__item marketing-nav__item--separated marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Market your business" data-trekkie-event="Main Nav" data-trekkie-action="Market your business" data-trekkie-id="Main Nav Market your business">Promociona tu negocio</a></li><li><a href="/email-marketing" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Email marketing" data-trekkie-event="Main Nav" data-trekkie-action="Email marketing" data-trekkie-id="Main Nav Email marketing">Email marketing</a></li><li><a href="/facebook-marketing" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Facebook Ads" data-trekkie-event="Main Nav" data-trekkie-action="Facebook Ads" data-trekkie-id="Main Nav Facebook Ads">Facebook Ads</a></li></ul></div></div></div></li><li><div class="popover-wrapper js-popover-dropdown popover-wrapper--dropdown" data-position="bottom" data-align="left"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--primary" itemprop="name" data-ga-event="Main Nav" data-ga-action="Manage Nav" data-trekkie-event="Main Nav" data-trekkie-action="Manage Nav" data-trekkie-id="Main Nav Manage Nav" aria-expanded="false" aria-controls="Popover12" aria-current="location">Gestionar<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="popover popover--position-bottom popover--align-left" id="Popover12"><div class="popover__content"><ul class="popover__list"><li><a href="/gestiona" class="marketing-nav__item marketing-nav__item--separated marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Manage everything" data-trekkie-event="Main Nav" data-trekkie-action="Manage everything" data-trekkie-id="Main Nav Manage everything">Gestiona todo</a></li><li><a href="/payments" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Payments" data-trekkie-event="Main Nav" data-trekkie-action="Payments" data-trekkie-id="Main Nav Payments">Pagos</a></li><li><a href="/capital" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Capital" data-trekkie-event="Main Nav" data-trekkie-action="Capital" data-trekkie-id="Main Nav Capital">Capital</a></li><li><a href="/shipping" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Shipping" data-trekkie-event="Main Nav" data-trekkie-action="Shipping" data-trekkie-id="Main Nav Shipping">Envíos</a></li></ul></div></div></div></li>
+      </ul>
+
+
+
+        <ul class="marketing-nav__items marketing-nav__user display--expanded-nav">
+          <li><a href="/precios" class="marketing-nav__item marketing-nav__item--user" itemprop="name" data-ga-event="Main Nav" data-ga-action="Pricing" data-trekkie-event="Main Nav" data-trekkie-action="Pricing" data-trekkie-id="Main Nav Pricing">Precios</a></li><li><div class="popover-wrapper js-popover-dropdown popover-wrapper--dropdown" data-position="bottom" data-align="left"><button type="button" class="popover__trigger marketing-nav__item marketing-nav__item--active marketing-nav__item--user" itemprop="name" data-ga-event="Main Nav" data-ga-action="Learn Nav" data-trekkie-event="Main Nav" data-trekkie-action="Learn Nav" data-trekkie-id="Main Nav Learn Nav" aria-expanded="false" aria-controls="Popover13" aria-current="location">Recursos<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="popover popover--position-bottom popover--align-left" id="Popover13"><div class="popover__content"><ul class="popover__list"><li><a href="https://help.shopify.com/es" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Help Center" data-trekkie-event="Main Nav" data-trekkie-action="Help Center" data-trekkie-id="Main Nav Help Center">Centro de ayuda</a></li><li><a href="/blog" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Blog" data-trekkie-event="Main Nav" data-trekkie-action="Blog" data-trekkie-id="Main Nav Blog">Blog</a></li><li><a href="/blog/topics/podcast" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Podcasts" data-trekkie-event="Main Nav" data-trekkie-action="Podcasts" data-trekkie-id="Main Nav Podcasts">Podcasts</a></li><li><a href="/blog/topics/historias-de-%C3%A9xito" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Historias de éxito" data-trekkie-event="Main Nav" data-trekkie-action="Historias de éxito" data-trekkie-id="Main Nav Historias de éxito">Historias de éxito</a></li><li><a href="/herramientas" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Free tools" data-trekkie-event="Main Nav" data-trekkie-action="Free tools" data-trekkie-id="Main Nav Free tools">Herramientas gratuitas</a></li><li><a href="https://community.shopify.com/c/Comunidad-de-Shopify-ES/ct-p/es?utm_campaign=navbar&amp;utm_content=es&amp;utm_medium=web&amp;utm_source=shopify" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Forums" data-trekkie-event="Main Nav" data-trekkie-action="Forums" data-trekkie-id="Main Nav Forums">Comunidad de Shopify</a></li><li><a href="/enciclopedia" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Business encyclopedia" data-trekkie-event="Main Nav" data-trekkie-action="Business encyclopedia" data-trekkie-id="Main Nav Business encyclopedia">Enciclopedia de negocios</a></li><li><a href="https://events.shopify.com/home?utm_campaign=homepage&amp;utm_content=es&amp;utm_medium=web&amp;utm_source=shopify" class="marketing-nav__item marketing-nav__item--child" itemprop="name" data-ga-event="Main Nav" data-ga-action="Community Events" data-trekkie-event="Main Nav" data-trekkie-action="Community Events" data-trekkie-id="Main Nav Community Events">Eventos de la comunidad</a></li></ul></div></div></div></li><li><a href="/login" class="marketing-nav__item marketing-nav__item--user" itemprop="name" data-ga-event="Main Nav" data-ga-action="Login" data-trekkie-event="Main Nav" data-trekkie-action="Login" data-trekkie-id="Main Nav Login">Iniciar sesión</a></li><li><form class="button_to" method="post" action="https://accounts.shopify.com/store-signup/setup" __bizdiag="0" __biza="W___"><input class="js-open-signup marketing-nav__button marketing-button marketing-button--small" data-ga-event="Main Nav" data-ga-action="Get Started" data-trekkie-event="Main Nav" data-trekkie-action="Get Started" data-trekkie-id="Main Nav Get Started" id="MainNavSignupButton" type="submit" value="Prueba gratis"></form></li>
+        </ul>
+
+        <button name="button" type="button" class="marketing-nav__hamburger hide--expanded-nav js-drawer-open-right" aria-haspopup="dialog" aria-expanded="false">
+            <svg class="icon" aria-labelledby="icon-modules-mobile-hamburger-15-title" role="img"><title id="icon-modules-mobile-hamburger-15-title">Abrir navegación principal</title> <use xlink:href="#modules-mobile-hamburger"></use> </svg>
+</button>
+</nav>
+
+  </div>
+
+
+<div id="NavDrawer" class="drawer drawer--right" role="dialog" aria-modal="true" aria-labelledby="DrawerTitle">
+  <div class="drawer__inner">
+    <div class="drawer__top">
+      <div class="marketing-nav__logo">
+        <a href="/" class="marketing-nav__logo__shopify">
+
+          <svg class="icon" aria-labelledby="icon-logos-shopify-black-16-title" role="img"><title id="icon-logos-shopify-black-16-title">Inicio</title> <use xlink:href="#logos-shopify-black"></use> </svg>
+</a>      </div>
+
+      <button name="button" type="button" class="drawer__close-button js-drawer-close">
+        <svg class="icon" aria-labelledby="icon-modules-cancel-17-title" role="img"><title id="icon-modules-cancel-17-title">Cerrar navegación principal</title> <use xlink:href="#modules-cancel"></use> </svg>
+</button>    </div>
+
+    <nav id="DrawerTitle" aria-label="Menú de navegación principal">
+        <ul class="drawer__items drawer__items--primary" id="DrawerNavPrimaryAccordion">
+          <li class="accordion-item"><button name="button" type="button" class="drawer__item drawer__item--primary accordion-link">Comienza<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><ul class="drawer__items drawer__items--nested"><li><a href="/comienza" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Start" data-trekkie-event="Main Nav" data-trekkie-action="Start" data-trekkie-id="Main Nav Start">Comienza tu negocio</a></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Crea tu marca<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Crea una marca profesional y ayuda a tus clientes a que encuentren tu negocio</p><ul class="drawer__items drawer__items--nested"><li><a href="/herramientas/generador-nombre-para-empresas" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Business name generator" data-trekkie-event="Main Nav" data-trekkie-action="Business name generator" data-trekkie-id="Main Nav Business name generator">Generador de nombres de empresas</a></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Presencia online<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Encuentra un dominio, explora bancos de imágenes, y amplía tu marca</p><ul class="drawer__items drawer__items--nested"><li><a href="/dominios" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Web addresss" data-trekkie-event="Main Nav" data-trekkie-action="Web addresss" data-trekkie-id="Main Nav Web addresss">Crea tu dominio</a></li><li><a href="https://burst.shopify.com" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Stock photography" data-trekkie-event="Main Nav" data-trekkie-action="Stock photography" data-trekkie-id="Main Nav Stock photography">Banco de imágenes</a></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Configuración de la tienda<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Utiliza las funcionalidades poderosas de Shopify para comenzar a vender</p><ul class="drawer__items drawer__items--nested"><li><a href="/oberlo" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Products to sell" data-trekkie-event="Main Nav" data-trekkie-action="Products to sell" data-trekkie-id="Main Nav Products to sell">Productos para vender</a></li><li><a href="https://themes.shopify.com/?locale=es" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Theme store" data-trekkie-event="Main Nav" data-trekkie-action="Theme store" data-trekkie-id="Main Nav Theme store">Temas para tiendas</a></li></ul></div></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item drawer__item--primary accordion-link">Vende<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><ul class="drawer__items drawer__items--nested"><li><a href="/vender" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Sell everywhere" data-trekkie-event="Main Nav" data-trekkie-action="Sell everywhere" data-trekkie-id="Main Nav Sell everywhere">Vende en todas partes</a></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Tienda online<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Vende online con un sitio web de ecommerce</p><ul class="drawer__items drawer__items--nested"><li><a href="/online" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Online Overview" data-trekkie-event="Main Nav" data-trekkie-action="Online Overview" data-trekkie-id="Main Nav Online Overview">Descripción General</a></li><li><a href="/online/soluciones-de-comercio-electronico" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Online Features" data-trekkie-event="Main Nav" data-trekkie-action="Online Features" data-trekkie-id="Main Nav Online Features">Características</a></li><li><a href="/ejemplos" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Online Examples" data-trekkie-event="Main Nav" data-trekkie-action="Online Examples" data-trekkie-id="Main Nav Online Examples">Ejemplos</a></li><li><a href="/online/plantillas" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Online Themes" data-trekkie-event="Main Nav" data-trekkie-action="Online Themes" data-trekkie-id="Main Nav Online Themes">Temas</a></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Point of Sale<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Vende en tiendas minoristas, pop-ups, y muchos lugares más</p><ul class="drawer__items drawer__items--nested"><li><a href="/pos" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Point of Sale Overview" data-trekkie-event="Main Nav" data-trekkie-action="Point of Sale Overview" data-trekkie-id="Main Nav Point of Sale Overview">Descripción General</a></li><li><a href="/pos/hardware" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Point of Sale Hardware" data-trekkie-event="Main Nav" data-trekkie-action="Point of Sale Hardware" data-trekkie-id="Main Nav Point of Sale Hardware">Hardware</a></li><li><a href="/pos/caracteristicas" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Point of Sale Features" data-trekkie-event="Main Nav" data-trekkie-action="Point of Sale Features" data-trekkie-id="Main Nav Point of Sale Features">Características</a></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Botón de compras<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Transforma tu sitio web o tu blog en una tienda online</p><ul class="drawer__items drawer__items--nested"><li><a href="/boton-de-compras" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Buy Button" data-trekkie-event="Main Nav" data-trekkie-action="Buy Button" data-trekkie-id="Main Nav Buy Button">Descripción General</a></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Canales de venta<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Alcanza a millones de compradores y aumenta tus ventas</p><ul class="drawer__items drawer__items--nested"><li><a href="/canales" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Sales channels" data-trekkie-event="Main Nav" data-trekkie-action="Sales channels" data-trekkie-id="Main Nav Sales channels">Descripción General</a></li><li><a href="/facebook-instagram" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Facebook and Instagram" data-trekkie-event="Main Nav" data-trekkie-action="Facebook and Instagram" data-trekkie-id="Main Nav Facebook and Instagram">Facebook e Instagram</a></li><li><a href="/google" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Google Buy" data-trekkie-event="Main Nav" data-trekkie-action="Google Buy" data-trekkie-id="Main Nav Google Buy">Google</a></li><li><a href="/ebay" class="drawer__item" data-ga-event="Main Nav" data-ga-action="eBay" data-trekkie-event="Main Nav" data-trekkie-action="eBay" data-trekkie-id="Main Nav eBay">eBay</a></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item accordion-link">Comercio internacional<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><p class="drawer__description">Llega a los compradores en nuevos mercados con las herramientas para ventas internacionales</p><ul class="drawer__items drawer__items--nested"><li><a href="/markets" class="drawer__item" data-ga-event="Main Nav" data-ga-action="International commerce Overview" data-trekkie-event="Main Nav" data-trekkie-action="International commerce Overview" data-trekkie-id="Main Nav International commerce Overview">Descripción General</a></li></ul></div></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item drawer__item--primary accordion-link">Promociona<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><ul class="drawer__items drawer__items--nested"><li><a href="/promociona" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Market your business" data-trekkie-event="Main Nav" data-trekkie-action="Market your business" data-trekkie-id="Main Nav Market your business">Promociona tu negocio</a></li><li><a href="/email-marketing" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Email marketing" data-trekkie-event="Main Nav" data-trekkie-action="Email marketing" data-trekkie-id="Main Nav Email marketing">Email marketing</a></li><li><a href="/facebook-marketing" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Facebook Ads" data-trekkie-event="Main Nav" data-trekkie-action="Facebook Ads" data-trekkie-id="Main Nav Facebook Ads">Facebook Ads</a></li></ul></div></li><li class="accordion-item"><button name="button" type="button" class="drawer__item drawer__item--primary accordion-link">Gestionar<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><ul class="drawer__items drawer__items--nested"><li><a href="/gestiona" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Manage everything" data-trekkie-event="Main Nav" data-trekkie-action="Manage everything" data-trekkie-id="Main Nav Manage everything">Gestiona todo</a></li><li><a href="/payments" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Payments" data-trekkie-event="Main Nav" data-trekkie-action="Payments" data-trekkie-id="Main Nav Payments">Pagos</a></li><li><a href="/capital" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Capital" data-trekkie-event="Main Nav" data-trekkie-action="Capital" data-trekkie-id="Main Nav Capital">Capital</a></li><li><a href="/shipping" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Shipping" data-trekkie-event="Main Nav" data-trekkie-action="Shipping" data-trekkie-id="Main Nav Shipping">Envíos</a></li></ul></div></li>
+        </ul>
+
+        <ul class="drawer__items drawer__items--user" id="DrawerNavSecondaryAccordion">
+          <li><a href="/precios" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Pricing" data-trekkie-event="Main Nav" data-trekkie-action="Pricing" data-trekkie-id="Main Nav Pricing">Precios</a></li><li class="accordion-item"><button name="button" type="button" class="drawer__item drawer__item--active accordion-link">Recursos<svg class="icon marketing-nav__arrow" aria-hidden="true" focusable="false"> <use xlink:href="#modules-caret-down"></use> </svg></button><div class="drawer__items-wrapper accordion-content"><ul class="drawer__items drawer__items--nested"><li><a href="https://help.shopify.com/es" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Help Center" data-trekkie-event="Main Nav" data-trekkie-action="Help Center" data-trekkie-id="Main Nav Help Center">Centro de ayuda</a></li><li><a href="/blog" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Blog" data-trekkie-event="Main Nav" data-trekkie-action="Blog" data-trekkie-id="Main Nav Blog">Blog</a></li><li><a href="/blog/topics/podcast" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Podcasts" data-trekkie-event="Main Nav" data-trekkie-action="Podcasts" data-trekkie-id="Main Nav Podcasts">Podcasts</a></li><li><a href="/blog/topics/historias-de-%C3%A9xito" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Historias de éxito" data-trekkie-event="Main Nav" data-trekkie-action="Historias de éxito" data-trekkie-id="Main Nav Historias de éxito">Historias de éxito</a></li><li><a href="/herramientas" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Free tools" data-trekkie-event="Main Nav" data-trekkie-action="Free tools" data-trekkie-id="Main Nav Free tools">Herramientas gratuitas</a></li><li><a href="https://community.shopify.com/c/Comunidad-de-Shopify-ES/ct-p/es?utm_campaign=navbar&amp;utm_content=es&amp;utm_medium=web&amp;utm_source=shopify" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Forums" data-trekkie-event="Main Nav" data-trekkie-action="Forums" data-trekkie-id="Main Nav Forums">Comunidad de Shopify</a></li><li><a href="/enciclopedia" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Business encyclopedia" data-trekkie-event="Main Nav" data-trekkie-action="Business encyclopedia" data-trekkie-id="Main Nav Business encyclopedia">Enciclopedia de negocios</a></li><li><a href="https://events.shopify.com/home?utm_campaign=homepage&amp;utm_content=es&amp;utm_medium=web&amp;utm_source=shopify" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Community Events" data-trekkie-event="Main Nav" data-trekkie-action="Community Events" data-trekkie-id="Main Nav Community Events">Eventos de la comunidad</a></li></ul></div></li><li><a href="/login" class="drawer__item" data-ga-event="Main Nav" data-ga-action="Login" data-trekkie-event="Main Nav" data-trekkie-action="Login" data-trekkie-id="Main Nav Login">Iniciar sesión</a></li><li><form class="button_to" method="post" action="https://accounts.shopify.com/store-signup/setup" __bizdiag="0" __biza="W___"><input class="js-open-signup drawer__item drawer__item--signup marketing-nav__button marketing-button marketing-button--small" data-ga-event="Main Nav" data-ga-action="Get Started" data-trekkie-event="Main Nav" data-trekkie-action="Get Started" data-trekkie-id="Main Nav Get Started" type="submit" value="Prueba gratis"></form></li>
+        </ul>
+
+        <ul class="drawer__items drawer__items--corporate">
+          <li><a href="/acerca-de-nosotros" class="drawer__item">Acerca de</a></li><li><a href="/sitemap" class="drawer__item">Mapa del sitio</a></li>
+        </ul>
+    </nav>
+  </div>
+</div>
+
+</header>-->
+
+{% block contenido %}
+
+
+{% endblock %}
+
+
+<div class="modal fade" id="modal" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% block titlemodal %}{% endblock %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% block modalcuerpo%}
+
+            {% endblock %}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block footer %}
+<footr>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <ul class="sociel">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="contact">
+                        <h3>Contactenos</h3>
+                        <span>Av. Amazonas  y Carlos Freire,<br>
+                            GADPO.
+                       <br>
+                        (06)898892</span>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="contact">
+                        <h3>Otros Link</h3>
+                        <ul class="lik">
+                            <li><a href="#">Acerca de </a></li>
+                            <li><a href="#">Quiero ser Parte </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div class="contact">
+                        <h3>Servicios</h3>
+                        <ul class="lik">
+                            <li><a href="#">Productos</a></li>
+                            <li><a href="#">Organizaciones</a></li>
+                            <li><a href="#">Aliados</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright 2021, Red de emprendimientos <a href="https://html.design/"></a></p>
+        </div>
+
+    </div>
+</footr>
+
+{% endblock %}
+<!-- end footer -->
+<!-- Javascript files-->
+<script src="{% static 'sitio/js/jquery.min.js' %}"></script>
+<script src="{% static 'sitio/js/popper.min.js' %}"></script>
+<script src="{% static 'sitio/js/bootstrap.bundle.min.js' %} "></script>
+<script src="{% static 'sitio/js/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'sitio/js/plugin.js' %}"></script>
+<!-- sidebar -->
+<script src="{% static 'sitio/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'sitio/js/custom.js' %}"></script>
+<script src="{% static 'sitio/js/extras.js' %}"></script>
+
+<script>
+         $(document).ready(function(){
+         $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+
+         $(".zoom").hover(function(){
+
+         $(this).addClass('transition');
+         }, function(){
+
+         $(this).removeClass('transition');
+         });
+         });
+
+
+</script>
+</body>
+</html>
