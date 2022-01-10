@@ -1,0 +1,85 @@
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% block titlemodal %} <h1 class="modal-title" id="exampleModalLabel"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Califica Nuestro Producto</b></h1>{% endblock %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% block modalcuerpo%}
+        <form id="myForm" style="width:90%; margin-left:5%;" action="{% url 'adminOrganiacion:calificacion_productos_cliente' id_presentacion %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Usuario:</label>
+                        <select name="id_usuario" class="form-control" required="" id="id_id_usuario" readonly>
+                            <option value="{{user.id}}" selected>{{user.first_name}} {{user.last_name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Fecha de Calificacion:</label>
+                        <input type="text" name="fecha_registro" class="form-control" required=""
+                               id="id_fecha_registro" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Calificanos:</label>
+                        <p class="clasificacion">
+                            <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                            --><label class="stars" for="radio1">★</label><!--
+                            --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                            --><label class="stars" for="radio2">★</label><!--
+                            --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                            --><label class="stars" for="radio3">★</label><!--
+                            --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                            --><label class="stars" for="radio4">★</label><!--
+                            --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                            --><label class="stars" for="radio5">★</label>
+                        </p>
+                        <input type="hidden" name="porcentaje" class="form-control" step="0.01" required=""
+                               id="id_porcentaje">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Comentario:</label>
+                        <textarea name="comentario" cols="40" rows="10" class="form-control" required=""
+                                  id="id_comentario" spellcheck="false"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <select  hidden name="id_presentacion" class="form-control" required="" id="id_id_presentacion">
+                            <option value="{{id_presentacion}}" selected>{{id_presentacion}}</option>
+                        </select>
+
+            <button type="submit" CLASS=" btn btn-danger">Calificar Producto</button>
+        </form>
+        {% endblock %}
+        <br>
+    </div>
+</div>
+
+<script>
+
+const hoy = new Date();
+$('#id_fecha_registro').val(hoy.toLocaleDateString());
+
+
+$('#myForm input[name=estrellas]').on('change', function() {
+   $('#id_porcentaje').val($('input[name=estrellas]:checked', '#myForm').val() * 20);
+});
+
+</script>

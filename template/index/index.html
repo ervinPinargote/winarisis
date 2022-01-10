@@ -1,50 +1,13 @@
 {% extends "base_dark.html" %}
 {% load static %}
+
+
+{% block il1 %} class="active" {% endblock %}
+
 {% block contenido %}
-<!--<div class="product">
- <section class="slider_section" style="width:95%; margin-left:2.5%;">
-    {%if not2 %}
-    <div id="main_slider" class="carousel slide banner-main" data-ride="carousel">
-        <div class="carousel-inner">
-            {% for new in not2 %}
-            {% ifequal forloop.counter 1 %}
-            <div class="carousel-item active">
 
-                <h2 style="color:#b32424;font-size: 30px;	font-weight: 500;text-transform: uppercase;">
-                   </h2>
 
-                <p></p>
-                <img class="" src="{{new.imagen.url}}" alt="{{new.titulo}}">
-                <div class="container">
-                    <div class="carousel-caption relative">
-                    </div>
-                </div>
 
-            </div>
-            {%else%}
-            <div class="carousel-item">
-                <h2 style="color:#b32424;font-size: 30px;	font-weight: 500;text-transform: uppercase;">
-                    </h2>
-                <p></p>
-                <img class="" src="{{new.imagen.url}}" alt="{{new.titulo}}">
-                <div class="container">
-                    <div class="carousel-caption relative">
-                    </div>
-                </div>
-            </div>
-            {% endifequal %}
-            {% endfor %}
-        </div>
-        <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-            <i class='fa fa-angle-right'></i>
-        </a>
-        <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-            <i class='fa fa-angle-left'></i>
-        </a>
-    </div>
-    {% endif%}
-</section>
-</div>-->
 
 <div id="slider" class="section main_slider">
   <div class="container-fuild">
@@ -267,63 +230,7 @@
 
 <!-- SECCION PARA LOS SERVICIOS -->
 
-<div class="section padding_layout_1">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="full">
-          <div class="main_heading text_align_left">
-            <h2>Latest from Our Blog</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="full blog_colum">
-          <div class="blog_feature_img"> <img src="{% static 'sitio_dark/images/it_service/post-03.jpg' %}" alt="#" /> </div>
-          <div class="post_time">
-            <p><i class="fa fa-clock-o"></i> April 16, 2018 ( In Maintenance )</p>
-          </div>
-          <div class="blog_feature_head">
-            <h4>Why Your Computer Hates You</h4>
-          </div>
-          <div class="blog_feature_cont">
-            <p>Lorem ipsum dolor sit amet, consectetur quam justo, pretium adipiscing elit. Vestibulum quam justo, pretium eu tempus ut, ...</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="full blog_colum">
-          <div class="blog_feature_img"> <img src="{% static 'sitio_dark/images/it_service/post-04.jpg' %}" alt="#" /> </div>
-          <div class="post_time">
-            <p><i class="fa fa-clock-o"></i> April 16, 2018 ( In Maintenance )</p>
-          </div>
-          <div class="blog_feature_head">
-            <h4>Easy Tips To Computer Repair</h4>
-          </div>
-          <div class="blog_feature_cont">
-            <p>Lorem ipsum dolor sit amet, consectetur quam justo, pretium adipiscing elit. Vestibulum quam justo, pretium eu tempus ut, ...</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="full blog_colum">
-          <div class="blog_feature_img"> <img src="{% static 'sitio_dark/images/it_service/post-06.jpg' %}" alt="#" /> </div>
-          <div class="post_time">
-            <p><i class="fa fa-clock-o"></i> April 16, 2018 ( In Maintenance )</p>
-          </div>
-          <div class="blog_feature_head">
-            <h4>Computer Maintenance 2018</h4>
-          </div>
-          <div class="blog_feature_cont">
-            <p>Lorem ipsum dolor sit amet, consectetur quam justo, pretium adipiscing elit. Vestibulum quam justo, pretium eu tempus ut, ...</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 

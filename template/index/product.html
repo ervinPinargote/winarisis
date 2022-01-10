@@ -2,111 +2,196 @@
 {% load static %}
 
 
-
 {% block contenido %}
 
 <div class="section padding_layout_1 product_detail">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9">
+    <div class="container">
         <div class="row">
-          <div class="col-xl-6 col-lg-12 col-md-12">
-            <div class="product_detail_feature_img hizoom hi2" style="width: 400px; height: 400px;">
-              <div class="hizoom hi2" style="width: 400px; height: 400px;">  <div class="small" style="width: 400px; height: 400px;"><div class="magnifier" style="width: 200px; height: 200px; opacity: 0.7; background: rgb(255, 255, 255); top: 200px; left: 174.5px; display: none;"></div><img src="{{pr.logo.url}}" alt="#" style="width: 400px; height: 400px;"></div><div class="big" style="width: 400px; height: 400px; right: -420px; display: none;"><img src="{{pr.logo.url}}" alt="#" style="width: 800px; height: 800px; top: -400px; left: -349px;"></div></div>
-            <div class="small" style="width: 400px; height: 400px;"><div class="magnifier" style="width: 200px; height: 200px; opacity: 0.7; background: rgb(255, 255, 255);"></div><img src="{{pr.logo.url}}" alt="#" style="width: 400px; height: 400px;"></div><div class="big" style="width: 400px; height: 400px; right: -420px;"><img src="{{pr.logo.url}}" alt="#" style="width: 800px; height: 800px;"></div></div>
-          </div>
-          <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
-            <div class="product-heading">
-              <h2 style="color:#F9F9F9;">{{pr.nombre_presentacion}}</h2>
-            </div>
-            <div class="product-detail-side"> <span>PVM: {{pr.precio_mayor}} </del></span><span class="new_price">PVP: {{pr.precio}}</span>
-              <br>
-              <br>
-              <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span> <span class="review">(5 customer review)</span> </div>
-            <div class="detail-contant">
-              <p>Contenido Neto: {{pr.cont_neto}} {{pr.id_unidad_medida.unidad_medida}}.<br>
-                 </p>
-              <p>Para Compras al Por mayor a partir de 12 unidades.<br>
-                 </p>
-            </div>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="full">
-              <div class="tab_bar_section">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#description">Descripcion</a> </li>
-                  <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#reviews">Comentarios ()</a> </li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                  <div id="description" class="tab-pane active">
-                    <div class="product_desc">
-                      <p style="justify-content: flex-end;"> {{pr.detalles}} </p>
-                    </div>
-                  </div>
-                  <div id="reviews" class="tab-pane fade">
-                    <div class="product_review">
-                      <h3>Reviews (2)</h3>
-                      <div class="commant-text row">
-                        <div class="col-lg-2 col-md-2 col-sm-4">
-                          <div class="profile"> <img class="img-responsive" src="images/it_service/client1.png" alt="#"> </div>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8">
-                          <h5>David</h5>
-                          <p><span class="c_date">March 2, 2018</span> | <span><a rel="nofollow" class="comment-reply-link" href="#">Reply</a></span></p>
-                          <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span>
-                          <p class="msg">ThisThis book is a treatise on the theory of ethics, very popular during the Renaissance.
-                            The first line of Lorem Ipsum, “Lorem ipsum dolor sit amet.. </p>
-                        </div>
-                      </div>
-                      <div class="commant-text row">
-                        <div class="col-lg-2 col-md-2 col-sm-4">
-                          <div class="profile"> <img class="img-responsive" src="images/it_service/client2.png" alt="#"> </div>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8">
-                          <h5>Jack</h5>
-                          <p><span class="c_date">March 2, 2018</span> | <span><a rel="nofollow" class="comment-reply-link" href="#">Reply</a></span></p>
-                          <span class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i> </span>
-                          <p class="msg">Nunc augue purus, posuere in accumsan sodales ac, euismod at est. Nunc faccumsan ermentum consectetur metus placerat mattis. Praesent mollis justo felis, accumsan faucibus mi maximus et. Nam hendrerit mauris id scelerisque placerat. Nam vitae imperdiet turpis</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="full review_bt_section">
-                            <div class="float-right"> <a class="btn sqaure_bt" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Leave a Review</a> </div>
-                          </div>
-                          <div class="full">
-                            <div id="collapseExample" class="full collapse commant_box">
-                              <form accept-charset="UTF-8" action="index.html" method="post">
-                                <input id="ratings-hidden" name="rating" type="hidden">
-                                <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." required=""></textarea>
-                                <div class="full_bt center">
-                                  <button class="btn sqaure_bt" type="submit">Save</button>
-                                </div>
-                              </form>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-12">
+                        <div class="product_detail_feature_img hizoom hi2" style="width: 400px; height: 400px;">
+                            <div class="hizoom hi2" style="width: 400px; height: 400px;">
+                                <div class="small" style="width: 400px; height: 400px;">
+                                    <div class="magnifier"
+                                         style="width: 200px; height: 200px; opacity: 0.7; background: rgb(255, 255, 255); top: 200px; left: 174.5px; display: none;"></div>
+                                    <img src="{{pr.logo.url}}" alt="#" style="width: 400px; height: 400px;"></div>
+                                <div class="big" style="width: 400px; height: 400px; right: -420px; display: none;"><img
+                                        src="{{pr.logo.url}}" alt="#"
+                                        style="width: 800px; height: 800px; top: -400px; left: -349px;"></div>
                             </div>
-                          </div>
+                            <div class="small" style="width: 400px; height: 400px;">
+                                <div class="magnifier"
+                                     style="width: 200px; height: 200px; opacity: 0.7; background: rgb(255, 255, 255);"></div>
+                                <img src="{{pr.logo.url}}" alt="#" style="width: 400px; height: 400px;"></div>
+                            <div class="big" style="width: 400px; height: 400px; right: -420px;"><img
+                                    src="{{pr.logo.url}}" alt="#" style="width: 800px; height: 800px;"></div>
                         </div>
-                      </div>
                     </div>
-                  </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
+                        <div class="product-heading">
+                            <h2 style="color:#F9F9F9;">{{pr.nombre_presentacion}}</h2>
+                        </div>
+                        <div class="product-detail-side"><span>PVM: {{pr.precio_mayor}} </del></span><span
+                                class="new_price">PVP: {{pr.precio}}</span>
+                            <br>
+                            <br>
+                            <span class="rating">
+
+                                <span class="rating">
+                                                        {% if numestrellas  <  1 %}
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endif %}
+
+                                                        {% if numestrellas  >=  1 and numestrellas  <=  20 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endif %}
+                                                        {% if numestrellas  >=  21 and numestrellas  <=  50 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endif %}
+                                                        {% if numestrellas  >=  51 and numestrellas  <=  69 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endif %}
+                                                        {% if numestrellas  >=  70 and numestrellas  <=  80 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endif %}
+                                                        {% if numestrellas  >=  81 and numestrellas  <=  100 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        {% endif %}
+
+                            </span>
+                            <span class="review">({{ne}} Comentarios)</span>
+                                </span>
+                        </div>
+                        <div class="detail-contant">
+                            <p>Contenido Neto: {{pr.cont_neto}} {{pr.id_unidad_medida.unidad_medida}}.<br>
+                            </p>
+                            <p>Para Compras al Por mayor a partir de 12 unidades.<br>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="full review_bt_section">
+                                    <div class="float-right"><a class="btn sqaure_bt" data-toggle="collapse"
+                                                                href="#" role="button"
+                                                                onclick="abrirmodal('{% url 'adminOrganiacion:calificacion_productos_cliente' pr.id %}'); "
+                                                                aria-expanded="false" aria-controls="collapseExample"><i
+                                            class="fa fa-star" aria-hidden="true"> </i> Calificar</a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-              </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="full">
+                            <div class="tab_bar_section">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab"
+                                                            href="#description">Descripcion</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#reviews">Comentarios
+                                        ({{ne}})</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="description" class="tab-pane active">
+                                        <div class="product_desc">
+                                            <p style="justify-content: flex-end;"> {{pr.detalles}} </p>
+                                        </div>
+                                    </div>
+                                    <div id="reviews" class="tab-pane fade">
+                                        <div class="product_review">
+                                            {% for cm in calificaciones %}
+                                            <div class="commant-text row">
+                                                <div class="col-lg-2 col-md-2 col-sm-4">
+                                                    <div class="profile"><img class="img-responsive"
+                                                                              src="{% static 'sitio_dark/images/incons/User_01.png'%}"
+                                                                              alt="#"></div>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                                    <h4>{{cm.id_usuario.first_name|capfirst }}
+                                                        {{cm.id_usuario.last_name|capfirst}}</h4>
+                                                    <p><span class="c_date">{{cm.fecha_registro}}</span> | <span><a
+                                                            rel="nofollow" class="comment-reply-link"
+                                                            href="#">Que dijo?</a></span>
+                                                    </p>
+                                                    <span class="rating">
+                                                        {% ifequal  cm.porcentaje  20 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endifequal %}
+                                                        {% ifequal cm.porcentaje  40 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endifequal %}
+                                                        {% ifequal cm.porcentaje  60.00 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endifequal %}
+                                                        {% ifequal cm.porcentaje  80 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        {% endifequal %}
+                                                        {% ifequal cm.porcentaje  100 %}
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        {% endifequal %}
+                                                    </span>
+                                                    <p class="msg"> {{cm.comentario}} </p>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-
-      </div>
-
     </div>
-  </div>
 </div>
-
-
 
 
 {% endblock %}

@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import producto, presentacion
+from .models import producto, presentacion, calificacion
+
 
 class AgregarProductosForm(forms.ModelForm):
     class Meta:
@@ -23,6 +24,7 @@ class AgregarProductosForm(forms.ModelForm):
             'fecha_registro': forms.DateInput(attrs={'class': 'form-control'}),
             'id_organizacion': forms.Select(attrs={'class': 'form-control'}),
         }
+
 
 class AgregarPresentacionesProductosForm(forms.ModelForm):
     class Meta:
@@ -63,4 +65,30 @@ class AgregarPresentacionesProductosForm(forms.ModelForm):
             'id_categoria': forms.Select(attrs={'class': 'form-control'}),
             'id_producto': forms.Select(attrs={'class': 'form-control'}),
 
+        }
+
+
+class CalificarProductosForm(forms.ModelForm):
+    class Meta:
+        model = calificacion
+        fields = [
+            'comentario',
+            'fecha_registro',
+            'porcentaje',
+            'id_usuario',
+            'id_presentacion',
+        ]
+        labels = {
+            'comentario': 'Comentario',
+            'fecha_registro': 'Fecha de Registro',
+            'porcentaje': 'Calificacion',
+            'id_usuario': 'Usuario logeado',
+            'id_presentacion': 'Producto Seleccionado',
+        }
+        widgets = {
+            'comentario': forms.Textarea(attrs={'class': 'form-control'}),
+            'fecha_registro': forms.DateInput(attrs={'class': 'form-control'}),
+            'porcentaje': forms.NumberInput(attrs={'class': 'form-control'}),
+            'id_usuario': forms.Select(attrs={'class': 'form-control'}),
+            'id_presentacion': forms.Select(attrs={'class': 'form-control'}),
         }

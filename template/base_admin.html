@@ -121,9 +121,9 @@
         <!--profile image & text-->
 
         <div class="profile">
-            <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
+            <img src="{% static 'sitio_dark/images/incons/user3.png'%}"
                  alt="profile_picture">
-            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+            <h3>{{ user.first_name |capfirst }} {{ user.last_name| capfirst  }}</h3>
             <p>Usuario Habilitado</p>
         </div>
         <!--menu item-->
@@ -141,7 +141,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{% url 'usuario:salir'  %}">
                     <span class="icon"><i class="fa fa-sign-out"></i></span>
                     <span class="item">Cerrar Seesion</span>
                 </a>

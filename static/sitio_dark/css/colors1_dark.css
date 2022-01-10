@@ -54,7 +54,7 @@ footer ul.social_icons li a:focus,
 
 .btn.sqaure_bt {
     border-radius: 0;
-    background: #039ee3;
+    background: #A86C30;
 }
 
 .btn.sqaure_bt span {
@@ -271,6 +271,10 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 .product_img {
     background: #A86C30;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
 }
 
 .counter-heading {

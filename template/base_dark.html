@@ -41,7 +41,7 @@
 </head>
 <body id="default_theme" class="it_service">
 <!-- loader -->
-<div class="bg_load"><img class="loader_animation" src="{% static 'sitio_dark/images/logos/it_logo_white.png'%}"
+<div class="bg_load"><img class="loader_animation"  width="50%" src="{% static 'sitio_dark/images/logos/it_logo_white.png'%}"
                           alt="#"/></div>
 <!-- end loader -->
 <!-- header -->
@@ -56,7 +56,7 @@
                             <ul class="list-inline">
                                 {% if user.is_authenticated %}
                                 <li><span class="topbar-label"><i class="fa  fa-user"></i></span> <span
-                                        class="topbar-hightlight">{{ user.first_name }} {{ user.last_name }}
+                                        class="topbar-hightlight">{{ user.first_name |capfirst }} {{ user.last_name |capfirst }}
                 </span></li>
                                 <li><span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span
                                         class="topbar-hightlight"><a
@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <!-- logo start -->
-                    <div class="logo"><a href="it_home.html"><img src="{{inst1.logo.url}}" alt="logo"/></a></div>
+                    <div class="logo"><a href="{%  url 'inicio' %}"><img src="{{inst1.logo.url}}" alt="logo"/></a></div>
                     <!-- logo end -->
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -113,40 +113,32 @@
                     <div class="menu_side">
                         <div id="navbar_menu">
                             <ul class="first-ul">
-                                <li><a class="active" href="it_home.html">Inicio</a>
+                                <li><a {% block il1 %} {% endblock %} href="{%  url 'inicio' %}">Inicio</a>
                                 </li>
-                                <li><a href="it_about.html">Nosotros</a></li>
-                                <li><a href="it_service.html">Organizaciones</a>
+                                <li><a {% block il2 %} {% endblock %} href="{% url 'winari:acerca_de' %}">Nosotros</a></li>
+                                <li><a {% block il3 %} {% endblock %} >Organizaciones</a>
                                     <ul>
-                                        <li><a href="it_service_list.html">Ver Organizaciones</a></li>
+                                        <li><a href="{% url 'winari:organizaciones_view' %}">Ver Organizaciones</a></li>
                                         {% if user.is_authenticated %}
                                         {% if request.user|has_group:"adminOrganizacion" %}
-                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Ir Administrar</a>
+                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organizacion</a>
                                         </li>
                                         {% endif %}
                                         {% endif %}
                                     </ul>
                                 </li>
-                                <li><a href="it_blog.html">Productos</a>
+                                <li><a {% block il4 %} {% endblock %} >Productos</a>
                                     <ul>
-                                        <li><a href="it_blog.html">Ver Productos</a></li>
+                                        <li><a href="{% url 'winari:procudtos_view' %}">Ver Productos</a></li>
                                         {% if user.is_authenticated %}
                                         {% if request.user|has_group:"adminOrganizacion" %}
-                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Ir Administrar</a>
+                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organizacion</a>
                                         </li>
                                         {% endif %}
                                         {% endif %}
                                     </ul>
                                 </li>
-                                <li><a href="#">Contactos</a>
-                                    <ul>
-                                        <li><a href="it_career.html">Career</a></li>
-                                        <li><a href="it_price.html">Pricing</a></li>
-                                        <li><a href="it_faq.html">Faq</a></li>
-                                        <li><a href="it_privacy_policy.html">Privacy Policy</a></li>
-                                        <li><a href="it_error.html">Error 404</a></li>
-                                    </ul>
-                                </li>
+
                                 <!-- <li> <a href="it_shop.html">Shop</a>
                                    <ul>
                                      <li><a href="it_shop.html">Shop List</a></li>
@@ -188,23 +180,7 @@
 
 
 <!-- PATROCINADORES -->
-<div class="section padding_layout_1" style="padding: 50px 0;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="full">
-                    <ul class="brand_list">
-                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon1.png' %}" alt="#"/></li>
-                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon2.png' %}" alt="#"/></li>
-                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon3.png' %}" alt="#"/></li>
-                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon4.png' %}" alt="#"/></li>
-                        <li><img src="{% static 'sitio_dark/images/it_service/brand_icon5.png' %}" alt="#"/></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <!-- Modal -->

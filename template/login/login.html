@@ -7,10 +7,11 @@
             </button>
         </div>
         {% block modalcuerpo%}
-        <form class="login-form" style="width:80%; margin-left:10%;" action="{% url 'login'  %}" method="post">
+        <form class="login-form" style="width:80%; margin-left:10%;" data-post-url="{% url 'login'  %}" id= "form_creacion"  method="post">
             {% csrf_token %}
+            <br>
             <div class="row">
-                 <div class="col-md-11 pr-1">
+                 <div class="col-md-12 pr-1">
                     <div class="form-group">
                     <label class="labelform">Usuario: </label>
                         <br>
@@ -20,13 +21,27 @@
             </div>
             <br>
             <div class="row">
-                 <div class="col-md-11 pr-1">
+                 <div class="col-md-12 pr-1">
                     <div class="form-group">
                     <label class="labelform">Contraseña: </label>
                         <input type="password" class="form-control" name="password" placeholder="Contraseña" value="" required>
                     </div>
                  </div>
             </div>
+
+             <div id="error" class="alert alert-danger ocultar" role="alert">
+                    <span id="messa"></span>
+                    <br>
+                    <span id="messa2"></span>
+            </div>
+
+            <div id="succes" class="alert alert-success ocultar" role="alert">
+                <span id="messa3"></span>
+                <br>
+                <span id="messa4"></span>
+            </div>
+
+
             <button class="btn btn-primary" style="margin-left:30%;" type="submit">Iniciar Sesión</button>
             <br>
             <br>
@@ -41,3 +56,40 @@
             <br>
     </div>
 </div>
+
+<script>
+    $(function() {
+    'use strict';
+    $('#form_creacion').on('submit', function() {
+       var post_url = $("#form_creacion").data("post-url");
+       var formData = new FormData(this);
+        $.ajax({
+            url : post_url,
+            type: "POST",
+            data : formData,
+            processData: false,
+            contentType: false,
+            success:function(response){
+                var message = response.content.message;
+                var nota = response.content.nota;
+                if(response.content.color == "succes")
+                {
+                    document.getElementById("messa3").textContent = "1.- "+ message;
+                    document.getElementById("messa4").textContent = "2.- "+ nota;
+                    document.getElementById("succes").classList.add("mostrar");
+                    document.getElementById("error").classList.remove("mostrar")
+                    //Función para actualizar cada 5 segundos(5000 milisegundos)
+                    setInterval(location.reload(true),1000);
+                }
+                else
+                {
+                    document.getElementById("messa").textContent = "1.- "+ message;
+                    document.getElementById("messa2").textContent = "2.- "+ nota;
+                    document.getElementById("error").classList.add("mostrar");
+                }
+            },
+        });
+        return false;
+    });
+});
+</script>

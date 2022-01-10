@@ -49,5 +49,9 @@ class presentacion(models.Model):
 class calificacion(models.Model):
     porcentaje = models.DecimalField(max_digits=5, decimal_places=2)
     comentario = models.TextField()
+    fecha_registro = models.DateField(default=None)
     id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     id_presentacion = models.ForeignKey('presentacion', on_delete=models.CASCADE, verbose_name="id_presentacion")
+
+    def __str__(self):
+        return self.comentario

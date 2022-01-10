@@ -20,14 +20,15 @@ from django.contrib.auth.views import LoginView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
-from administracion.views import index_principalF
+from administracion.views import index_principalF, login_view
 
 urlpatterns = [
-    path('login', LoginView.as_view(template_name='login/login.html'), name="login"),
+    #path('login', LoginView.as_view(template_name='login/login.html'), name="login"),
+    path('login', login_view, name="login"),
     path('', index_principalF, name='inicio'), #permite lanzar el index principal
     path('admin/', admin.site.urls),
 
-   # path('index/', include(('administracion.urls', 'inicio'), namespace='inicio'), name='inicio'),
+   path('winari/', include(('administracion.urls', 'winari'), namespace='winari'), name='winari'),
 
 
     path('Organizacion/', include(('organizacionn.urls', 'organizacion'), namespace='organizacion'), name='organizacion'),
