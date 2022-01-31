@@ -43,7 +43,7 @@
 </li>
 
 <li>
-    <a href="#">
+    <a href="{% url 'usuario:salir'  %}">
         <span class="icon"><i class="fa fa-sign-out"></i></span>
         <span class="item">Cerrar Seesion</span>
     </a>
@@ -52,9 +52,9 @@
 {% endblock %}
 
 {% block contenido %}
-<div style="width: 90%; margin-left:5%;">
+<div style="width: 90%; margin-left:5%; margin-top:8%;">
 
-    <br>
+
     <div class="main_heading text_align_center">
         <h2>{{Producto.nombre_producto}}</h2>
         <p class="large"> Agregar Presentacion <a
@@ -93,7 +93,7 @@
                 <td>{{pr.precio_mayor}}</td>
                 <td  style="text-align:center;"><img src="{{pr.logo.url}}" alt="{{pr.nombre_presentacion}}" width="50%"/></td>
                 <td style="text-align:center;">
-                    <a style="color:#A86C30;  font-size: 30px;" title="Modificar" href="#"><i class="fa fa-pencil-square"></i> </a>
+                    <a style="color:#A86C30;  font-size: 30px;" title="Modificar" href="#" onclick="abrirmodal('{% url 'adminOrganiacion:editar_presentacion_productos' pr.id %}'); "><i class="fa fa-pencil-square"></i> </a>
                     <a style="color:#B11C1F;  font-size: 30px;" title="Eliminar" href="#"><i class="fa fa-trash"></i> </a>
                 </td>
             </tr>

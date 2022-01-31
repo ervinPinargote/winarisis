@@ -275,7 +275,7 @@
                         </div>
                         <ul class="footer-menu">
                             {% for org in productos %}
-                            <li><a href="it_data_recovery.html"><i class="fa fa-angle-right"></i>
+                            <li><a href="{% url 'adminOrganiacion:presentacion_productos_cliente' org.id %}"><i class="fa fa-angle-right"></i>
                                 {{org.nombre_presentacion}}</a></li>
                             {% endfor %}
                         </ul>

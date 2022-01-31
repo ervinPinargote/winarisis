@@ -1,0 +1,133 @@
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% block titlemodal %} <h1 class="modal-title" id="exampleModalLabel"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Editar Presentacion Productos</b></h1>{% endblock %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% block modalcuerpo%}
+
+        <form style="width:90%; margin-left:5%;"  enctype="multipart/form-data"
+              id="form_editar_presentacion"
+              data-post-url="{% url 'adminOrganiacion:editar_presentacion_productos' id %}"
+              method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Nombre Presentacion:</label>
+                        {{form.nombre_presentacion}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Estado: </label>
+                        {{form.estado}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Contenido Neto:</label>
+                        {{form.cont_neto}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Unidad de Medida: </label>
+                        {{form.id_unidad_medida}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Precio Normal: </label>
+                        {{form.precio}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Precio por Mayor:  </label>
+                        {{form.precio_mayor}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Categoria: </label>
+                        {{form.id_categoria}}
+                    </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label class="labelform">Logo:  </label>
+                        {{form.logo}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                        <label class="labelform">Detalles:</label>
+                        {{form.detalles}}
+                    </div>
+                </div>
+            </div>
+            {{form.id_producto}}
+            <button type="submit" CLASS=" btn btn-info">Actualizar Datos</button>
+            <br>
+            <br>
+            <div id="error" class="alert alert-danger ocultar" role="alert">
+                <span id="mensaje1"></span>
+            </div>
+            <div id="ok" class="alert alert-success ocultar" role="alert">
+                <span id="mensaje2"></span>
+            </div>
+
+        </form>
+        {% endblock %}
+        <br>
+    </div>
+</div>
+<script>
+    $(function() {
+    'use strict';
+    $('#form_editar_presentacion').on('submit', function() {
+       var post_url = $("#form_editar_presentacion").data("post-url");
+       var formData = new FormData(this);
+        $.ajax({
+            url : post_url,
+            type: "POST",
+            data : formData,
+            processData: false,
+            contentType: false,
+            success:function(response){
+                var message = response.content.message
+                var color = response.content.color
+                if ( color == 0) {
+                    document.getElementById("error").classList.add("mostrar");
+                    document.getElementById("mensaje1").innerHTML=message;
+                    document.getElementById("mensaje2").textContent="";
+                    return false;
+                } else {
+                     document.getElementById("error").classList.remove("mostrar");
+                     document.getElementById("ok").classList.remove("ocultar");
+                     document.getElementById("mensaje1").innerHTML="";
+                     document.getElementById("mensaje2").innerHTML=message;
+                     setInterval("location.reload(true)",2000);
+                     return true;
+                }
+            },
+        });
+        return false;
+    });
+});
+</script>

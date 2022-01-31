@@ -44,7 +44,7 @@
 </li>
 
 <li>
-    <a href="#">
+    <a href="{% url 'usuario:salir'  %}">
         <span class="icon"><i class="fa fa-sign-out"></i></span>
         <span class="item">Cerrar Seesion</span>
     </a>
@@ -54,37 +54,79 @@
 {% endblock %}
 
 {% block contenido %}
-<div style="width: 90%; margin-left:5%;">
+<div style="width: 90%; margin-left:5%; margin-top:20px;">
+    <br>
+    <br>
+    <h4>Informacion de la Organizacion</h4>
 
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contant_form">
-              <h4>GET IN TOUCH</h4>
-              <p>Our goal is to provide the best customer service and to answer all of your questions in a timely manner.</p>
-              <div class="form_section">
-                <form class="form_contant" action="index.html">
-                  <fieldset>
-                  <div class="row">
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Websire URL" type="text" required="">
-                    </div>
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Your name" type="text" required="">
-                    </div>
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Email adress" type="email" required="">
-                    </div>
-                    <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                      <input class="field_custom" placeholder="Phone number" type="text" required="">
-                    </div>
-                    <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <textarea class="field_custom" placeholder="Messager" required=""></textarea>
-                    </div>
-                    <div class="center"><a class="btn main_bt" href="#">SUBMIT NOW</a></div>
-                  </div>
-                  </fieldset>
-                </form>
-              </div>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <div class="form-group">
+                <label class="labelform"> Logo </label>
+                <br>
+                <img class="img-responsive" src="{{Organizacion.logo.url}}" width="200px" height="200px">
             </div>
+        </div>
+        <div class="col-md-9 col-md-offset-2">
+            <div class="form-group">
+                <label class="labelform"> Quienes Somos? </label>
+                <br>
+                <div style="border:1px solid white;height:200px; ">
+                    <span style="position:relative;display: inline-block; margin-top: 20px; margin-left:20px;">{{Organizacion.descripcion}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <div class="form-group">
+                <label class="labelform"> Contacto  </label>
+                <br>
+                <div style="border:1px solid white;height:40px; ">
+                    <span style="position:relative;display: inline-block; margin-top: 10px; margin-left:20px;">{{Organizacion.telefono}}</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-9 col-md-offset-2">
+            <div class="form-group">
+                <label class="labelform"> Correo Electronico </label>
+                <br>
+                <div style="border:1px solid white;height:40px; ">
+                    <span style="position:relative;display: inline-block; margin-top: 10px; margin-left:20px;">{{Organizacion.correo}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <div class="form-group">
+                <label class="labelform"> Fecha de Creacion  </label>
+                <br>
+                <div style="border:1px solid white;height:40px; ">
+                <span style="position:relative;display: inline-block; margin-top: 10px; margin-left:20px;">{{Organizacion.fecha_creacion}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-md-offset-2">
+            <div class="form-group">
+                <label class="labelform"> Direccion </label>
+                <br>
+                <div style="border:1px solid white;height:40px; ">
+                    <span style="position:relative;display: inline-block; margin-top: 10px; margin-left:20px;">{{Organizacion.direccion1}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <div class="form-group">
+               <a class="btn btn-info" title="Actualizar Datos" href="#" onclick="abrirmodal('{% url 'adminOrganiacion:editar_organizacion' Organizacion.id %}'); "> Actualizar Datos!! </a>
+            </div>
+        </div>
+    </div>
 
 </div>
 {% endblock %}

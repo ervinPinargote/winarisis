@@ -43,7 +43,7 @@
 </li>
 
 <li>
-    <a href="#">
+    <a href="{% url 'usuario:salir'  %}">
         <span class="icon"><i class="fa fa-sign-out"></i></span>
         <span class="item">Cerrar Seesion</span>
     </a>
@@ -57,11 +57,9 @@
     <br>
     <div class="main_heading text_align_center">
         <h2 style="color:#111;">Nuestros Productos</h2>
-        <p class="large"> Todas Las Presentaciones <a
-                href="#"
-                onclick=""
-                class=""
-                style="color:white;"><i class="fa fa-check-square-o"></i> </p>
+        <p class="large"> Todas Las Presentaciones
+            <a href="#" onclick="" style="color:white;"><i class="fa fa-check-square-o"></i></a>
+        </p>
     </div>
 
 
@@ -88,12 +86,12 @@
                 <td style="text-align:center;">{{forloop.counter}}</td>
                 <td>{{pr.nombre_presentacion}}</td>
                 <td>{{pr.id_categoria.nombre_categoria}}</td>
-                <td>{{pr.cont_neto}} {{pr.id_unidad_medida.unidad_medida}} </td>
-                <td>{{pr.precio}}</td>
-                <td>{{pr.precio_mayor}}</td>
+                <td style="text-align:center;">{{pr.cont_neto}} {{pr.id_unidad_medida.unidad_medida}} </td>
+                <td style="text-align:center;">{{pr.precio}}</td>
+                <td style="text-align:center;">{{pr.precio_mayor}}</td>
                 <td  style="text-align:center;"><img src="{{pr.logo.url}}" alt="{{pr.nombre_presentacion}}" width="50" height="50"/></td>
                 <td style="text-align:center;">
-                    <a style="color:#A86C30;  font-size: 30px;" title="Modificar" href="#"><i class="fa fa-pencil-square"></i> </a>
+                    <a style="color:#A86C30;  font-size: 30px;" title="Modificar" href="#" onclick="abrirmodal('{% url 'adminOrganiacion:editar_presentacion_productos' pr.id %}'); "><i class="fa fa-pencil-square"></i> </a>
                     <a style="color:#B11C1F;  font-size: 30px;" title="Eliminar" href="#"><i class="fa fa-trash"></i> </a>
                 </td>
             </tr>
@@ -105,6 +103,5 @@
             </tbody>
         </table>
     </div>
-
 </div>
 {% endblock %}

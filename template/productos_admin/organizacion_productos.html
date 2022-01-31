@@ -43,7 +43,7 @@
 </li>
 
 <li>
-    <a href="#">
+    <a href="{% url 'usuario:salir'  %}">
         <span class="icon"><i class="fa fa-sign-out"></i></span>
         <span class="item">Cerrar Seesion</span>
     </a>
@@ -88,7 +88,7 @@
 
                 <td style="text-align:center;">
                     <a style="color:white;  font-size: 30px;" title="Agregar Presentacion" href="{% url 'adminOrganiacion:presentacion_productos_organizacion' doc.id %}"><i class="fa fa-plus-square"></i> </a>
-                    <a style="color:#A86C30;  font-size: 30px;" title="Modificar" href="#"><i class="fa fa-pencil-square"></i> </a>
+                    <a style="color:#A86C30;  font-size: 30px;" title="Modificar" href="#" onclick="abrirmodal('{% url 'adminOrganiacion:editar_productos_organizacion' doc.id %}'); "><i class="fa fa-pencil-square"></i> </a>
                     <a style="color:#B11C1F;  font-size: 30px;" title="Eliminar" href="#"><i class="fa fa-trash"></i> </a>
 
                 </td>

@@ -1,12 +1,16 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from organizacionn.models import usuarios_organizacion, organizaciones
 from productos.models import producto, presentacion, calificacion
 
-from productos.forms import AgregarProductosForm, AgregarPresentacionesProductosForm, CalificarProductosForm
+from productos.forms import AgregarProductosForm, AgregarPresentacionesProductosForm, CalificarProductosForm, \
+    EditarProductosForm, EditarPresentacionesProductosForm
 
 from administracion.models import ConfiguracionIndex
+
+from organizacionn.forms import EditarOrganizacionForm
 
 
 @login_required
@@ -107,12 +111,10 @@ def presentacion_productos_cliente(request, id_presentacion):
     # book = Book.objects.select_related('person__city').filter(pk=1)
     total = 0
     cal = 0
-    if len(Calificaciones)>0:
+    if len(Calificaciones) > 0:
         for tot in Calificaciones:
-            total = total+tot.porcentaje
+            total = total + tot.porcentaje
         cal = total / len(Calificaciones)
-
-
 
     contexto = {
         'inst1': inst,
@@ -127,7 +129,6 @@ def presentacion_productos_cliente(request, id_presentacion):
 
 def calificacion_productos_cliente(request, id_presentacion):
     user = User.objects.get(username=request.user)
-
 
     if request.method == 'POST':
         saldopendiente = request.POST.get("Valor_pendiente")
@@ -145,3 +146,63 @@ def calificacion_productos_cliente(request, id_presentacion):
                 'user': user,
                 }
     return render(request, 'productos_calificacion/modal_calificacion.html', contexto)
+
+
+# EDITAR LA INFORMACION DE UN PRODUCTO
+def CproductoEditarModal(request, id_producto):
+    product = producto.objects.get(id=id_producto)
+    if (request.method == 'GET'):
+        form = EditarProductosForm(instance=product)
+    else:
+        form = EditarProductosForm(request.POST, instance=product)
+        if form.is_valid():
+            if form.save():
+                error = "Datos Actulizados Correctamente!!!"
+                # return redirect('academia:Listar')  # Redirijo a la Listar que es Principal en el funcionalidad
+                return JsonResponse({'content': {'message': error, 'color': '1', }})
+        else:
+            error = "Error en la Actulizacion de Datos!!!"
+            # return redirect('academia:Listar')  # Redirijo a la Listar que es Principal en el funcionalidad
+            return JsonResponse({'content': {'message': error, 'color': '0', }})
+    return render(request, 'productos_admin/modal_editar_productos.html',
+                  {'form': form, 'title': "Editar", 'id': id_producto})
+
+
+# EDITAR LA INFORMACION DE LA ORGANIZACION
+
+def CorganizacionEditarModal(request, id_organizacion):
+    organizaci = organizaciones.objects.get(id=id_organizacion)
+    if (request.method == 'GET'):
+        form = EditarOrganizacionForm(instance=organizaci)
+    else:
+        form = EditarOrganizacionForm(request.POST, instance=organizaci)
+        if form.is_valid():
+            if form.save():
+                error = "Datos Actulizados Correctamente!!!"
+                # return redirect('academia:Listar')  # Redirijo a la Listar que es Principal en el funcionalidad
+                return JsonResponse({'content': {'message': error, 'color': '1', }})
+        else:
+            error = "Error en la Actulizacion de Datos!!!"
+            # return redirect('academia:Listar')  # Redirijo a la Listar que es Principal en el funcionalidad
+            return JsonResponse({'content': {'message': form.errors, 'color': '0', }})
+    return render(request, 'productos_admin/modal_editar_organizacion.html',
+                  {'form': form, 'title': "Editar", 'id': id_organizacion})
+
+# EDITAR LA INFORMACION DE UN PRODUCTO
+def CpresentacionEditarModal(request, id_presentacion):
+    presentac = presentacion.objects.get(id=id_presentacion)
+    if (request.method == 'GET'):
+        form = EditarPresentacionesProductosForm(instance=presentac)
+    else:
+        form = EditarPresentacionesProductosForm(request.POST, instance=presentac)
+        if form.is_valid():
+            if form.save():
+                error = "Datos Actulizados Correctamente!!!"
+                # return redirect('academia:Listar')  # Redirijo a la Listar que es Principal en el funcionalidad
+                return JsonResponse({'content': {'message': error, 'color': '1', }})
+        else:
+            error = "Error en la Actulizacion de Datos!!!"
+            # return redirect('academia:Listar')  # Redirijo a la Listar que es Principal en el funcionalidad
+            return JsonResponse({'content': {'message': error, 'color': '0', }})
+    return render(request, 'productos_admin/modal_editar_presentacion.html',
+                  {'form': form, 'title': "Editar", 'id': id_presentacion})
