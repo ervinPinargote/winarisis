@@ -124,6 +124,12 @@
                                         <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organizacion</a>
                                         </li>
                                         {% endif %}
+
+                                        {% if user.is_staff %}
+                                        <li><a href="{% url 'admin:index' %}">Administrador RED</a>
+                                        </li>
+                                        {% endif %}
+
                                         {% endif %}
                                     </ul>
                                 </li>
@@ -135,6 +141,12 @@
                                         <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organizacion</a>
                                         </li>
                                         {% endif %}
+
+                                        {% if user.is_staff %}
+                                        <li><a href="{% url 'admin:index' %}">Administrador RED</a>
+                                        </li>
+                                        {% endif %}
+
                                         {% endif %}
                                     </ul>
                                 </li>

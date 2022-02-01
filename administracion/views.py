@@ -56,7 +56,7 @@ def login_view(request):
 def acerca_de(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
     noti = noticias_index.objects.all()
-    orga = organizaciones.objects.all()
+    orga = organizaciones.objects.all()[:5]
     productos = presentacion.objects.all()
     return render(request, 'index/about.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, })
 
@@ -65,12 +65,12 @@ def organizaciones_view(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()
-    productos = presentacion.objects.all()
+    productos = presentacion.objects.all()[:5]
     return render(request, 'index/organizaciones.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, })
 
 def procudtos_view(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()
-    productos = presentacion.objects.all()
+    productos = presentacion.objects.all()[:5]
     return render(request, 'index/product_all.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, })

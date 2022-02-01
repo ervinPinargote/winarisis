@@ -8,9 +8,11 @@ from productos.models import producto, presentacion, calificacion
 from productos.forms import AgregarProductosForm, AgregarPresentacionesProductosForm, CalificarProductosForm, \
     EditarProductosForm, EditarPresentacionesProductosForm
 
-from administracion.models import ConfiguracionIndex
+from administracion.models import ConfiguracionIndex, noticias_index
 
 from organizacionn.forms import EditarOrganizacionForm
+
+
 
 
 @login_required
@@ -109,6 +111,8 @@ def presentacion_productos_cliente(request, id_presentacion):
     Presentacion = presentacion.objects.get(id=id_presentacion)  # Encontramos las Presentaciones
     Calificaciones = calificacion.objects.all().filter(id_presentacion=id_presentacion)
     # book = Book.objects.select_related('person__city').filter(pk=1)
+    noti = noticias_index.objects.all()
+    productos = presentacion.objects.all()[:5]
     total = 0
     cal = 0
     if len(Calificaciones) > 0:
@@ -123,6 +127,8 @@ def presentacion_productos_cliente(request, id_presentacion):
         'calificaciones': Calificaciones,
         'numestrellas': round(cal),
         'ne': len(Calificaciones),
+        'not2': noti,
+        'productos': productos,
     }
     return render(request, 'index/product.html', contexto)
 
