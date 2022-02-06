@@ -79,10 +79,10 @@
                         <div class="float-right">
                             {% if user.is_authenticated %}
                             <div class="make_appo"><a class="btn white_btn" href="{% url 'usuario:salir'  %}">Cerrar
-                                Sesion</a></div>
+                                Sesión</a></div>
                             {% else %}
                             <div class="make_appo"><a class="btn white_btn"
-                                                      onclick="abrirmodal('{% url 'login'  %}'); ">Iniciar Sesion</a>
+                                                      onclick="abrirmodal('{% url 'login'  %}'); ">Iniciar Sesión</a>
                             </div>
                             {% endif %}
                         </div>
@@ -136,14 +136,14 @@
             <li>
                 <a href="#" class="active">
                     <span class="icon"><i class="fa  fa-home"></i></span>
-                    <span class="item">Gestionar Organizacion</span>
+                    <span class="item">Gestionar Organización</span>
                 </a>
             </li>
 
             <li>
                 <a href="{% url 'usuario:salir'  %}">
                     <span class="icon"><i class="fa fa-sign-out"></i></span>
-                    <span class="item">Cerrar Seesion</span>
+                    <span class="item">Cerrar Sesión</span>
                 </a>
             </li>
 

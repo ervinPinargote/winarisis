@@ -62,7 +62,7 @@
                                         class="topbar-hightlight"><a
                                         href="mailto:info@yourdomain.com">{{ user.email }}</a></span></li>
                                 {% else %}
-                                <span>No has iniciado session.</span>
+                                <span>No has iniciado sesión.</span>
                                 {% endif %}
                             </ul>
                         </div>
@@ -88,10 +88,10 @@
                     <div class="float-right">
                         {% if user.is_authenticated %}
                         <div class="make_appo"><a class="btn white_btn" href="{% url 'usuario:salir'  %}">Cerrar
-                            Sesion</a></div>
+                            Sesión</a></div>
                         {% else %}
                         <div class="make_appo"><a class="btn white_btn" onclick="abrirmodal('{% url 'login'  %}'); ">Iniciar
-                            Sesion</a></div>
+                            Sesión</a></div>
                         {% endif %}
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                                         <li><a href="{% url 'winari:organizaciones_view' %}">Ver Organizaciones</a></li>
                                         {% if user.is_authenticated %}
                                         {% if request.user|has_group:"adminOrganizacion" %}
-                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organizacion</a>
+                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organización</a>
                                         </li>
                                         {% endif %}
 
@@ -138,7 +138,7 @@
                                         <li><a href="{% url 'winari:procudtos_view' %}">Ver Productos</a></li>
                                         {% if user.is_authenticated %}
                                         {% if request.user|has_group:"adminOrganizacion" %}
-                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organizacion</a>
+                                        <li><a href="{% url 'adminOrganiacion:indexOrganizacion'  %}">Administrador Organización</a>
                                         </li>
                                         {% endif %}
 
@@ -251,13 +251,20 @@
     <div class="container-fuild">
         <div class="row">
             <div class="map_section">
-                <div id="map"></div>
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63835.176042702326!2d-77.02776501173413!3d-0.44404051706216596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d7a581784a2c35%3A0x808e23e0a619c42!2sEl%20Coca!5e0!3m2!1ses-419!2sec!4v1644173705499!5m2!1ses-419!2sec"
+                            width="100%"
+                            height="90%"
+                            style="border:1;margin-left:3%;"
+                            allowfullscreen=""
+                            loading="lazy"></iframe>
+                </div>
             </div>
             <div class="footer_blog">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="main-heading left_text">
-                            <h2>Mision</h2>
+                            <h2>MISIÓN</h2>
                         </div>
                         <p>{{inst1.mision}}</p>
                         <ul class="social_icons">
@@ -286,7 +293,7 @@
                             <h2>Nuestros Mejores Productos</h2>
                         </div>
                         <ul class="footer-menu">
-                            {% for org in productos %}
+                            {% for org in productos1 %}
                             <li><a href="{% url 'adminOrganiacion:presentacion_productos_cliente' org.id %}"><i class="fa fa-angle-right"></i>
                                 {{org.nombre_presentacion}}</a></li>
                             {% endfor %}
@@ -345,112 +352,7 @@
 
 
 <!-- map js -->
-<script>
-         // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-         // Australia.
-         function initMap() {
-           var map = new google.maps.Map(document.getElementById('map'), {
-             zoom: 11,
-             center: {lat: 40.645037, lng: -73.880224},
-         styles: [
-                  {
-                    elementType: 'geometry',
-                    stylers: [{color: '#fefefe'}]
-                  },
-                  {
-                    elementType: 'labels.icon',
-                    stylers: [{visibility: 'off'}]
-                  },
-                  {
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#616161'}]
-                  },
-                  {
-                    elementType: 'labels.text.stroke',
-                    stylers: [{color: '#f5f5f5'}]
-                  },
-                  {
-                    featureType: 'administrative.land_parcel',
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#bdbdbd'}]
-                  },
-                  {
-                    featureType: 'poi',
-                    elementType: 'geometry',
-                    stylers: [{color: '#eeeeee'}]
-                  },
-                  {
-                    featureType: 'poi',
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#757575'}]
-                  },
-                  {
-                    featureType: 'poi.park',
-                    elementType: 'geometry',
-                    stylers: [{color: '#e5e5e5'}]
-                  },
-                  {
-                    featureType: 'poi.park',
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#9e9e9e'}]
-                  },
-                  {
-                    featureType: 'road',
-                    elementType: 'geometry',
-                    stylers: [{color: '#eee'}]
-                  },
-                  {
-                    featureType: 'road.arterial',
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#3d3523'}]
-                  },
-                  {
-                    featureType: 'road.highway',
-                    elementType: 'geometry',
-                    stylers: [{color: '#eee'}]
-                  },
-                  {
-                    featureType: 'road.highway',
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#616161'}]
-                  },
-                  {
-                    featureType: 'road.local',
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#9e9e9e'}]
-                  },
-                  {
-                    featureType: 'transit.line',
-                    elementType: 'geometry',
-                    stylers: [{color: '#e5e5e5'}]
-                  },
-                  {
-                    featureType: 'transit.station',
-                    elementType: 'geometry',
-                    stylers: [{color: '#000'}]
-                  },
-                  {
-                    featureType: 'water',
-                    elementType: 'geometry',
-                    stylers: [{color: '#c8d7d4'}]
-                  },
-                  {
-                    featureType: 'water',
-                    elementType: 'labels.text.fill',
-                    stylers: [{color: '#b1a481'}]
-                  }
-                ]
-         });
-         
-           var image = '{% static 'sitio_dark/images/it_service/location_icon_map_cont.png'%} ';
-           var beachMarker = new google.maps.Marker({
-             position: {lat: 40.645037, lng: -73.880224},
-             map: map,
-             icon: image
-           });
-         }
 
-</script>
 <!-- google map js -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
 <!-- end google map js -->

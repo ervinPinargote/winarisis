@@ -13,8 +13,9 @@ def index_principalF(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()
-    productos = presentacion.objects.all()
-    return render(request, 'index/index.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, })
+    productos = presentacion.objects.all()[:10]
+    productos1 = presentacion.objects.all()[:5]
+    return render(request, 'index/index.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, 'productos1': productos1, })
 
 
 class index_principal(TemplateView):
@@ -57,8 +58,8 @@ def acerca_de(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()[:5]
-    productos = presentacion.objects.all()
-    return render(request, 'index/about.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, })
+    productos = presentacion.objects.all()[:5]
+    return render(request, 'index/about.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, })
 
 
 def organizaciones_view(request):
@@ -66,11 +67,12 @@ def organizaciones_view(request):
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()
     productos = presentacion.objects.all()[:5]
-    return render(request, 'index/organizaciones.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, })
+    return render(request, 'index/organizaciones.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, })
 
 def procudtos_view(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()
+    productosTodos = presentacion.objects.all()
     productos = presentacion.objects.all()[:5]
-    return render(request, 'index/product_all.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, })
+    return render(request, 'index/product_all.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, 'productos': productosTodos})
