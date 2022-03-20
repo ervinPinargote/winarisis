@@ -1,7 +1,23 @@
+import datetime
+import os
+
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+
+from django.views import View
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+
+
+
 from organizacionn.models import usuarios_organizacion, organizaciones
 from productos.models import producto, presentacion, calificacion
 
@@ -11,7 +27,6 @@ from productos.forms import AgregarProductosForm, AgregarPresentacionesProductos
 from administracion.models import ConfiguracionIndex, noticias_index
 
 from organizacionn.forms import EditarOrganizacionForm
-
 
 
 
@@ -212,3 +227,64 @@ def CpresentacionEditarModal(request, id_presentacion):
             return JsonResponse({'content': {'message': error, 'color': '0', }})
     return render(request, 'productos_admin/modal_editar_presentacion.html',
                   {'form': form, 'title': "Editar", 'id': id_presentacion})
+
+
+
+class FichaAdmisionPDF_view(View):
+    def link_callback(self, uri, rel):
+        result = finders.find(uri)
+        if result:
+            if not isinstance(result, (list, tuple)):
+                result = [result]
+            result = list(os.path.realpath(path) for path in result)
+            path = result[0]
+        else:
+            sUrl = settings.STATIC_URL  # Typically /static/
+            sRoot = settings.STATIC_ROOT  # Typically /home/userX/project_static/
+            mUrl = settings.MEDIA_URL  # Typically /media/
+            mRoot = settings.MEDIA_ROOT  # Typically /home/userX/project_static/media/
+
+            if uri.startswith(mUrl):
+                path = os.path.join(mRoot, uri.replace(mUrl, ""))
+            elif uri.startswith(sUrl):
+                path = os.path.join(sRoot, uri.replace(sUrl, ""))
+            else:
+                return uri
+        # make sure that file exists
+        if not os.path.isfile(path):
+            raise Exception(
+                'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+        return path
+
+    def get(self, request, *args, **kwargs):
+        presentacion1 = presentacion.objects.all()
+        #admision = admisione.objects.get(pk=self.kwargs['pk']) #obtener la admission.
+        #estudios = estudios_realizado.objects.all().filter(ci=admision.ci.ci)
+        #user = User.objects.get(
+        #    username=self.request.user)  # envia el usuario que esta en la logueado en la aplicacion.
+        reporte_name = "reporte"
+        template_path = 'reportes/reporte1.html'
+        fecha = datetime.date.today()
+        context = {'tittle': 'CATÁLOGO DE PRODUCTOS ', 'admision': '01',
+                   'items': presentacion1,
+                   'codigo': 100,
+                   'icon': '{}{}'.format(settings.MEDIA_URL, 'el-coca.jpg'),
+                   'estudios': 100,
+                   'date': fecha
+                   #'usuario': user
+                   }
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename=' + reporte_name + ".pdf"
+        template = get_template(template_path)
+        html = template.render(context)
+        if request.POST.get('show_html', ''):
+            response['Content-Type'] = 'application/text'
+            response['Content-Disposition'] = 'attachment; filename="ABC.txt"'
+            response.write(html)
+        else:
+            pisaStatus = pisa.CreatePDF(
+                html.encode("UTF-8"), dest=response, link_callback=self.link_callback)
+            if pisaStatus.err:
+                return HttpResponse('We had some errors with code %s <pre>%s</pre>' % (pisaStatus.err, html))
+        return response
