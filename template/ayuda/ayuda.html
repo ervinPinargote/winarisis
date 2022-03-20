@@ -1,0 +1,82 @@
+<div class="modal-dialog modal-lg" id="modal_login" role="document">
+    <div class="modal-content">
+        <div class="modal-header" style="background:#A86C30;">
+            {% block titlemodal %} <h1 class="modal-title" id="exampleModalLabel"><b style="color:white;">Ayuda Wiñari</b></h1>{% endblock %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color:white;">&times;</span>
+            </button>
+        </div>
+        {% block modalcuerpo%}
+        <br>
+        <div style="margin-left:5%; width:90%;" >
+            <h1 style="color:#A86C30;">¿ Cómo autenticarse ?</h1>
+            <br>
+            <p style="color:#563A22;" align = "justify">
+                En la página principal, se presenta la opción para iniciar sesión en el sistema en cual, se debe
+                ingresar las credenciales dando clic en “Iniciar Sesión” para poder acceder a las funcionalidades
+                del sistema según nuestro tipo de usuario.
+            </p>
+            <br>
+             <h1 style="color:#A86C30;">¿ Cómo registrarse ?</h1>
+            <br>
+            <p style="color:#563A22;" align = "justify">
+                En la página principal, se presenta la opción para iniciar sesión en el sistema en cual, se debe
+                dar clic en “Crear una cuenta” para poder acceder al formulario para llenar los datos del usuario.
+                Luego de llenarlos a todos debe dar clic en "Registrar usuario".
+            </p>
+            <br>
+            <h1 style="color:#A86C30;">¿ Cómo calificar un producto ?</h1>
+            <br>
+            <p style="color:#563A22;" align = "justify">
+                Para calificar un producto el usuario se debe encontrar registrado en el sistema, luego dar click en la
+                opcion calificar. Caso contrario deberá registrarse e iniciar sesión.
+                Para dejar su calificación ud debe valorar el producto mediante estrellas, una estrella significará que
+                no le agradó el producto o 5 estrellas si es le agrado totalmente, sin embargo, puede elegir el número
+                que ud desea de acuerdo a la experiencia que tuvo al consumir dicho producto. También tiene la opción
+                de dejar un comentario que lo leerán los emprendedores para poder seguir mejorando sus productos.
+                Una vez que realice los pasos anteriores ya puede dar clic en el botón Calificar Producto y así
+                enviar su calificación.
+            </p>
+
+        </div>
+        {% endblock %}
+            <br>
+    </div>
+</div>
+
+<script>
+    $(function() {
+    'use strict';
+    $('#form_creacion').on('submit', function() {
+       var post_url = $("#form_creacion").data("post-url");
+       var formData = new FormData(this);
+        $.ajax({
+            url : post_url,
+            type: "POST",
+            data : formData,
+            processData: false,
+            contentType: false,
+            success:function(response){
+                var message = response.content.message;
+                var nota = response.content.nota;
+                if(response.content.color == "succes")
+                {
+                    document.getElementById("messa3").textContent = "1.- "+ message;
+                    document.getElementById("messa4").textContent = "2.- "+ nota;
+                    document.getElementById("succes").classList.add("mostrar");
+                    document.getElementById("error").classList.remove("mostrar")
+                    //Función para actualizar cada 5 segundos(5000 milisegundos)
+                    setInterval(location.reload(true),1000);
+                }
+                else
+                {
+                    document.getElementById("messa").textContent = "1.- "+ message;
+                    document.getElementById("messa2").textContent = "2.- "+ nota;
+                    document.getElementById("error").classList.add("mostrar");
+                }
+            },
+        });
+        return false;
+    });
+});
+</script>

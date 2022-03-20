@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 
 from .models import ConfiguracionIndex, noticias_index
 from organizacionn.models import organizaciones
-from productos.models import  presentacion
+from productos.models import presentacion
 
 
 def index_principalF(request):
@@ -15,12 +15,17 @@ def index_principalF(request):
     orga = organizaciones.objects.all()
     productos = presentacion.objects.all()[:10]
     productos1 = presentacion.objects.all()[:5]
-    return render(request, 'index/index.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos, 'productos1': productos1, })
+    return render(request, 'index/index.html',
+                  {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos': productos,
+                   'productos1': productos1, })
 
 
 class index_principal(TemplateView):
     template_name = "index/index.html"
+
+
 from django.contrib.auth import authenticate, login
+
 
 def my_view(request):
     username = request.POST['username']
@@ -32,7 +37,8 @@ def my_view(request):
 
     else:
         # Devuelve un mensaje de error de 'inicio de sesión no válido'.
-        return render(request, 'index/index.html',)
+        return render(request, 'index/index.html', )
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -54,12 +60,14 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login/login.html', {'form': form})
 
+
 def acerca_de(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()[:5]
     productos = presentacion.objects.all()[:5]
-    return render(request, 'index/about.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, })
+    return render(request, 'index/about.html',
+                  {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, })
 
 
 def organizaciones_view(request):
@@ -67,7 +75,9 @@ def organizaciones_view(request):
     noti = noticias_index.objects.all()
     orga = organizaciones.objects.all()
     productos = presentacion.objects.all()[:5]
-    return render(request, 'index/organizaciones.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, })
+    return render(request, 'index/organizaciones.html',
+                  {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, })
+
 
 def procudtos_view(request):
     inst = ConfiguracionIndex.objects.get(pk=1)
@@ -75,4 +85,10 @@ def procudtos_view(request):
     orga = organizaciones.objects.all()
     productosTodos = presentacion.objects.all()
     productos = presentacion.objects.all()[:5]
-    return render(request, 'index/product_all.html', {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos, 'productos': productosTodos})
+    return render(request, 'index/product_all.html',
+                  {'inst1': inst, 'not2': noti, 'organizacion': orga, 'productos1': productos,
+                   'productos': productosTodos})
+
+
+def ayuda(request):
+    return render(request, 'ayuda/ayuda.html')

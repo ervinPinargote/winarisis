@@ -77,10 +77,10 @@ DATABASES = {
 'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'winari',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'USER': 'super',
+        'PASSWORD': 'winari2020',
+        'HOST': 'WinariOrellana-2550.postgres.pythonanywhere-services.com',
+        'PORT': '12550',
     }
 }
 

@@ -3,7 +3,7 @@ from django.urls import path
 from .views import index_principalF, index_organizacion, productos_organizacion, agregar_productos_organizacion, \
     presentacion_productos_organizacion, agregar_presentacion_productos, presentacion_productos_todos_organizacion, \
     presentacion_productos_cliente, calificacion_productos_cliente, CproductoEditarModal, CorganizacionEditarModal, \
-    CpresentacionEditarModal, FichaAdmisionPDF_view
+    CpresentacionEditarModal, FichaAdmisionPDF_view, ReporteUsuario_view
 
 urlpatterns = [
     #path('', index_principal.as_view(), name='index1'),
@@ -36,5 +36,6 @@ urlpatterns = [
 
      # REPORTES PDF DE PRODUCTOS
 
-     path('admision/pdf/<int:pk>/', FichaAdmisionPDF_view.as_view(), name='ReporteFichaAdmision'),
+     path('productos/pdf/<int:pk>/', FichaAdmisionPDF_view.as_view(), name='ReporteProductos'),
+     path('usuarios/pdf/<int:pk>/', ReporteUsuario_view.as_view(), name='ReporteUsuario'),
 ]

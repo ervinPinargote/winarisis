@@ -155,8 +155,8 @@
                                 <li>
                                     <a>Reportes</a>
                                     <ul>
-                                        <li><a href="{% url 'adminOrganiacion:ReporteFichaAdmision' 1 %}"> Productos</a></li>
-                                        <li><a href="{% url 'adminOrganiacion:ReporteFichaAdmision' 1 %}"> Usuarios</a></li>
+                                        <li><a href="{% url 'adminOrganiacion:ReporteProductos' 1 %}"> Productos</a></li>
+                                        <li><a href="{% url 'adminOrganiacion:ReporteUsuario' 1 %}"> Usuarios</a></li>
                                     </ul>
                                 </li>
                                 {% endif %}
@@ -179,7 +179,9 @@
                         </div>
                         <div class="search_icon">
                             <ul>
-                                <li><a href="#" data-toggle="modal" data-target="#search_bar"><i class="fa fa-question-circle"
+                                <li><a href="#" data-toggle="modal"
+                                       onclick="abrirmodal('{% url 'winari:ayuda_view'  %}'); "
+                                       data-target="#search_bar"><i class="fa fa-question-circle"
                                                                                                  aria-hidden="true"></i></a>
                                 </li>
                             </ul>
