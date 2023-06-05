@@ -7,7 +7,7 @@
             </button>
         </div>
         {% block modalcuerpo%}
-        <form class="login-form" style="width:80%; margin-left:10%;" data-post-url="{% url 'login'  %}" id= "form_creacion"  method="post">
+        <form class="login-form" style="width:80%; margin-left:10%;" data-post-url="{% url 'login:login'  %}" id= "form_creacion"  method="post">
             {% csrf_token %}
             <br>
             <div class="row">

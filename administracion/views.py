@@ -91,4 +91,7 @@ def procudtos_view(request):
 
 
 def ayuda(request):
+    inst = ConfiguracionIndex.objects.get(pk=1)
+    noti = noticias_index.objects.all()
+    orga = organizaciones.objects.all()
     return render(request, 'ayuda/ayuda.html')

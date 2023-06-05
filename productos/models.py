@@ -23,7 +23,7 @@ class categoria(models.Model):
 
 
 class unidad_medida(models.Model):
-    unidad_medida = models.CharField(max_length=10, null=False, verbose_name="Nombre Medida")
+    unidad_medida = models.CharField(max_length=10, null=True, default="Kg", verbose_name="Nombre Medida")
     estado = models.BooleanField(default=False)
 
     def __str__(self):
